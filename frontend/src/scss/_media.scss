@@ -1,0 +1,686 @@
+// @media screen and (max-width:1244px) {
+//    .content-container{
+//       padding: 0 72px;
+//    }
+
+//    .footer-container{
+//       padding: 64px 72px;
+//    }
+//    .features-cards {
+//          flex-wrap: wrap;
+//    }
+//    .features-card{
+//       flex: 1 0 calc(50% - 16px);
+//       &:nth-child(even){
+//          margin-right: 0;
+//       }
+//    }
+//    .about-image{
+//       width: 416px;
+//    }
+// }
+
+// @media screen and (max-width:980px) {
+
+//    .hero {
+//          &::before {
+//             width: 362px;
+//             height: 204px;
+//             left: 5vw;
+//             top: 8vh;
+//             opacity: 0.15;
+            
+//          }
+//    }
+
+//    .header-links{
+//       display: none;
+//    }
+
+//    .about-content {
+//       display: flex;
+//       flex-direction: column;
+//       text-align: center;
+//       align-items: center;
+//       justify-content: center;
+//    }
+
+//    .about-image {
+//       margin-bottom: 64px;
+//       order: 1;
+//    }
+
+//    .about-text {
+//       max-width: 688px;
+//       order: 2;
+//       margin-right: 0;
+//    }
+
+//    .about-row-left {
+//       .about-image {
+//          margin-right: 0;
+//       }
+//    }
+
+//    .footer-desktop{
+//       display: none;
+//    }
+//    .footer-tablet{
+//       display: flex;
+//    }
+
+//    .footer-discord-text{
+//       margin-bottom: 16px;
+//    }
+
+//    .footer-discord-button{
+//       margin-bottom: 16px;
+//    } 
+
+//    .attribution-links{ 
+//       margin-top: 8px;
+//    }
+
+
+//    .footer-logo{
+//       font-size: 28px;
+//    }
+// }
+
+// @media screen and (max-width:680px) {
+//    .header-container {
+//          padding: 24px;
+//    }
+//    .header-cta{
+//          padding: 6px 12px;
+//    }
+//    .hero-image{
+//       width: 100vw;
+//       border-radius: 0;
+//    }
+//    .subscription-card{
+//       width: 100vw;
+//    }
+
+//    .subscription-form {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+      
+//    }
+
+//    .subscription-input{
+//       width: 356px;
+//       padding: 16px 0 16px 24px;
+      
+//    }
+//    .subscription-form{
+//       display: flex;
+//       flex-direction: column;
+//    }
+
+//    .subscription-form-button-desktop {
+//       display: none;
+//    }
+//    .subscription-form-button-mobile {
+//       display: inline;
+//    }
+
+//    .footer-container {
+//       padding: 64px 48px;
+//    }
+//    //paddings scaling
+
+//    .hero{
+//       padding-top: 64px;
+//    }
+
+//    .hero-image {
+//       margin: 64px 0;
+//    }
+
+//    .features {
+//       padding: 72px 0 96px 0;
+//    }
+
+//    .about {
+//       padding: 64px 0 0 0;
+//    }
+
+//    .about-content {
+//       margin-bottom: 64px;
+//    }
+
+//    .about-image {
+//       margin-bottom: 32px;
+//    }
+
+//    .about-row {
+//       margin-bottom: 64px;  
+//    }
+
+//    .discord{
+//       padding: 64px 0;
+//    }
+
+//    .subscription {
+//       padding: 120px 0 64px 0;
+
+//    }
+   
+//    //fonts scaling
+//       .header-logo {
+//          font-size: 14px;
+   
+//          &::before {
+
+//             width: 12px;
+//             height: 12px;
+           
+//             top: 21%;
+//             left: 0;
+
+//          }
+//       }
+
+//    .header-cta{
+//       @include button-3;
+//    }
+   
+//    .hero-text{
+//       h1{
+//          @include h2-extra-bold;
+//       }
+//       h5{
+//          @include h6;
+//       }
+//    }
+//    .hero-paragraph{
+//       @include body-3;
+//    }
+
+//    .subscription-input{
+//       @include body-3;
+//       background-size: 34px 24px;
+//       &::placeholder{
+//          @include body-3;
+//       }
+//    }
+
+//    .features{
+//       h2{
+//          @include h3;
+//       }
+//    }
+
+//    .about-text{
+//       h2{
+//          @include h3;
+//       }
+
+//       p{
+//          @include body-3;
+//       }
+//    }
+
+//    .discord{
+//       h2{
+//          @include h3;
+//       }
+
+//       p{
+//          @include body-3;
+//       }
+//    }
+
+//    .discord-button{
+//       padding: 8px 32px;
+//       @include button-3;
+//    }
+
+//    .subscription-card{
+//       h2{
+//          @include h3;
+//       }
+//       p{
+//          @include body-3;
+//       }
+//    }
+
+//    .footer-logo{
+//       font-size: 22px;
+//    }
+
+//    .footer-contact{
+//       @include h6;
+//    }
+
+//    .footer-copyright{
+//       @include body-4
+//    }
+
+
+// }
+
+// @media screen and (max-width:560px) {
+//    .content-container {
+//       padding: 0 24px;
+//    }
+
+//    .hero {
+//          &::before {
+//             width: 262px;
+//             height: 154px;
+//             left: 0;
+//             opacity: 0.2;
+
+//          }
+//    }
+
+
+//    .about-image {
+//       width: 320px;
+//    }
+
+//    .subscription-card{
+//       padding: 128px 24px;
+//    }
+
+
+//    .features-cards {
+//       flex-wrap: wrap;
+//    }
+
+//    .features-card {
+//       flex: 1 0 100%;
+//       margin-right: 0;
+      
+//    }
+
+//    .footer-tablet {
+//       display: none;
+//    }
+
+//    .footer-mobile {
+    
+//       display: block;
+//    }
+//    .footer-column-one-mobile{
+//       display: block;
+//    }
+
+//    .footer-container {
+//       padding: 32px 40px;
+//    }
+   
+
+//    .attribution-links{
+//      text-align: center;
+//    }
+// }
+
+// @media screen and (max-width:420px) {
+//    .subscription-input {
+//       width: 280px;
+//       @include body-4;
+
+//       &::placeholder {
+//          @include body-4;
+//       }
+//    }
+
+//    .subscription-form-button-mobile {
+//       width: 48px;
+//       padding: 13px;
+//       margin-left: -48px;
+
+//       img {
+//          width: 14px;
+//       }
+//    }
+
+//    .success{
+//       img{
+//          width: 14px;
+//          height: 14px;
+//       }
+//       @include body-4;
+//    }
+//    .error{
+//       @include body-4;
+//    }
+
+// }
+
+@media screen and (max-width: 1248px) {
+   .features-description-image{
+      width: 496px;
+   }
+}
+
+@media screen and (max-width: 1024px) {
+
+   .features-cards {
+      flex-wrap: wrap;
+   }
+
+   .features-description-image{
+      width: 85%;
+   }
+
+   .features-card {
+      flex: 1 0 calc(50% - 16px);
+
+      &:nth-child(1) {
+         margin-bottom: 16px;
+      }
+
+      &:nth-child(2) {
+         margin-bottom: 16px;
+      }
+
+      &:nth-child(even) {
+         margin-right: 0;
+      }
+   }
+
+   .cta-section-text {
+      h2 {
+         &::after {
+            top: -50%;
+            right: -5%;
+         }
+
+         &::before {
+            top: -50%;
+            left: -5%;
+         }
+      }
+
+      p {
+         &::after {
+            top: 25%;
+            right: -18%;
+         }
+
+         &::before {
+            top: 25%;
+            left: -18%;
+         }
+      }
+
+      &::after {
+         top: 100%;
+         right: -5%;
+      }
+
+      &::before {
+         top: 100%;
+         left: -5%;
+      }
+   }
+
+   .hero-image.features {
+      img {
+         width: 100%;
+      }
+   }
+
+   .features-description-content {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .features-description-separator{
+      margin: 0 auto 24px auto;
+   }
+
+   .features-description-image {
+      margin-bottom: 64px;
+      margin-right: 0;
+      order: 0 !important;
+   }
+
+   .features-description-text {
+      margin-right: 0 !important;
+      
+      p{
+         text-align: center;
+      }
+   }
+
+   .features-description-list{
+      text-align: left;
+      margin: 0 auto;
+   }
+
+
+}
+
+@media screen and (max-width:860px){
+   .cta-section-text {
+         h2 {
+            &::after {
+               top: -50%;
+               right: 0;
+            }
+   
+            &::before {
+               top: -50%;
+               left: 0;
+            }
+         }
+   
+         p {
+            &::after {
+               top: 25%;
+               right: -13%;
+            }
+   
+            &::before {
+               top: 25%;
+               left: -13%;
+            }
+         }
+   
+         &::after {
+            top: 100%;
+            right: 0;
+         }
+   
+         &::before {
+            top: 100%;
+            left: 0;
+         }
+      }
+}
+
+@media screen and (max-width: 768px) {
+   :root {
+      font-size: 14px;
+   }
+   .features-description-image{
+      width: 100%;
+   }
+
+
+   .discord{
+      padding: 32px 48px;
+   }
+
+   .features-cards {
+      margin-bottom: 48px;
+   }
+
+   .cta-section-text {
+      h2 {
+         &::after {
+            display: none;
+         }
+
+         &::before {
+            display: none;
+         }
+      }
+
+      p {
+         &::after {
+            display: none;
+         }
+
+         &::before {
+            display: none;
+         }
+      }
+
+      &::after {
+         display: none;
+      }
+
+      &::before {
+         display: none;
+      }
+   }
+
+   .cta-section {
+      padding-top: 0;
+   }
+
+   .discord{
+      margin-bottom: 6em;
+   }
+
+   .cta-section-buttons {
+      margin-bottom:88px;
+   }
+
+   .content {
+      padding: 0 32px;
+   }
+   .header-logo {
+      img {
+         height: 32px;
+      }
+   }
+
+   .footer-logo{
+      img{
+         height: 32px;
+      }
+   }
+
+   .hero-image.main{
+      img {
+         width: 544px;
+      }
+   }
+
+   .header-container {
+      padding: 24px 32px;
+   }
+
+   .header-burger-menu {
+      display: flex;
+      flex-direction: column;
+   }
+
+   .header-nav {
+      display: none;
+   }
+
+   .header-button-signup {
+      display: none;
+   }
+
+   .footer-container {
+      padding: 40px 32px;
+   }
+   .intro {
+      padding: 64px 32px;
+   }
+
+   .features-description-image {
+      margin-bottom: 48px;
+   }
+   
+   .features-description-row{
+      margin-bottom: 64px;
+   }
+
+   .features-description-coming-soon{
+      margin-top: -16px;
+      h2{
+         margin-bottom: 48px;
+      }
+   }
+   
+   .features-description-content{
+      margin-bottom: 64px;
+   }
+
+}
+
+@media screen and (max-width: 520px){
+   .hero-image{
+      display: none;
+   }
+   
+   .hero{
+      margin-bottom: 8em;
+   }
+   .hero-text{
+      margin-bottom: 0;
+   }
+}
+
+@media screen and (max-width: 425px) {
+   :root {
+         font-size: 12px;
+   }
+
+   .discord{
+      padding: 32px 32px;
+   }
+
+   .header-button-login{
+      display: none;
+   }
+
+   .header-container {
+      padding: 24px 16px;
+   }
+
+   .header-logo {
+      img {
+         height: 28px;
+      }
+   }
+
+   .content {
+      padding: 0 16px;
+   }
+
+   .intro {
+      padding: 48px 24px;
+   }
+
+   .features-card {
+      flex: 1 0 100%;
+      margin-right: 0;
+   }
+
+   .footer-logo {
+      img {
+         height: 28px;
+      }
+   }
+   .footer-nav{
+      display: block;
+   }
+
+   .footer-links{
+      margin-bottom: 32px;
+   }
+
+}
