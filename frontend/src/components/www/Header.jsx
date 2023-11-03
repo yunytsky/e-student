@@ -5,7 +5,7 @@ const Header = () => {
         <header className="header">
             <div className="logo">Е-СТУДЕНТ</div>
             <nav className="header-nav">
-                <a href="#">Підтримати ЗСУ</a>
+                <a className="support-link" href="#">Підтримати ЗСУ</a>
                 <button className="header-cta button-filled">
                     <Link to="#">Увійти</Link>
                 </button>

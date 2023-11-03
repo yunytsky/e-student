@@ -1,17 +1,16 @@
 import Header from "../../components/www/Header";
-import LoginForm from "../../components/forms/LoginForm";
+import SignupForm from "../../components/forms/SignupForm";
 import Footer from "../../components/www/Footer";
-
-const Login = () => {
+const Signup = () => {
     return(
         <>
             <Header/>
             <div className="content">
-                <LoginForm/>
+                <SignupForm/>
             </div>
             <Footer/>
         </>
     );
 };
 
-export default Login;
+export default Signup;
