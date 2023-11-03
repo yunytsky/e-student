@@ -7,7 +7,7 @@ const Main = () => {
     return(
         <>
             <Header/>
-            <div className="content">
+            <div className="hero-container">
                 <div className="hero">
                     <h4>
                         КНУ імені Т. Шевченка
