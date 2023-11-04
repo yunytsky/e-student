@@ -6,11 +6,14 @@ $black-50: #81818D;
 $black-25: #C0C0C6;
 $black-10: #E6E6E8;
 $black-5: #F2F2F4;
+$black-5-60: rgba($color: $black-5, $alpha: .6);
+
 
 //Primary
-$primary-blue: #0831FA; 
+$primary-blue: #1B40F9; 
 $primary-yellow: #FFD338; 
 
 //Secondary
-$secondary-blue: #6F82DD; 
+$secondary-blue: #5259e3; 
+$blue-bg: rgba($color: $primary-blue, $alpha: .08);
 
