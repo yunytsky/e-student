@@ -1,45 +1,21 @@
-import { Link } from "react-router-dom";
-import cabinetIcon from "../../assets/person.svg";
-import scheduleIcon from "../../assets/clock.svg";
-import newsIcon from "../../assets/paper.svg";
-import chatIcon from "../../assets/chat.svg";
+import { Link, useLocation } from "react-router-dom";
 
+const Sidebar = (props) => {
+ const loction = useLocation();
 
-const Sidebar = () => {
- return(
+  return (
     <aside className="sidebar">
-        <Link className="sidebar-page active">
-            <img src={cabinetIcon} alt="person" />
-            <span>
-                Кабінет
-            </span>
-        </Link>
-
-        <Link className="sidebar-page ">
-        <img src={scheduleIcon} alt="person" />
-            <span>
-                Розклад
-            </span>
-        </Link>
-
-        <Link className="sidebar-page ">
-        <img src={newsIcon} alt="person" />
-
-            <span>
-                Новини
-            </span>
-        </Link>
-
-        <Link className="sidebar-page ">
-        <img src={chatIcon} alt="person" />
-
-            <span>
-                Техпідтримка
-            </span>
-        </Link>
-
+      {props.pages &&
+        props.pages.map((page, index) => {
+          return (
+            <Link to={page.url} key={index} className={page.url == location.pathname ? "sidebar-page active" : "sidebar-page"}>
+              <img src={page.icon} alt="person" />
+              <span>{page.name}</span>
+            </Link>
+          );
+        })}
     </aside>
- );
+  );
 };
 
 export default Sidebar;
