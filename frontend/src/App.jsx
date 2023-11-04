@@ -6,6 +6,7 @@ import Signup from "./pages/www/Signup"
 import Cabinet from "./pages/app/Cabinet"
 import Support from "./pages/app/Support"
 import News from "./pages/app/News"
+import Schedule from "./pages/app/Schedule"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
         <Route path="cabinet" element={<Cabinet/>}/>
         <Route path="support" element={<Support/>}/>
         <Route path="news" element={<News/>}/>
+        <Route path="schedule" element={<Schedule/>}/>
 
       </Route>
     </Route>
