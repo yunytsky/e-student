@@ -4,6 +4,7 @@ import Main from "./pages/www/Main"
 import Login from "./pages/www/Login"
 import Signup from "./pages/www/Signup"
 import Cabinet from "./pages/app/Cabinet"
+import Support from "./pages/app/Support"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -15,7 +16,9 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup/>}/>
 
       <Route path="app" element={<AppLayout/>}>
-        <Route path="profile" element={<Cabinet/>}/>
+        <Route path="cabinet" element={<Cabinet/>}/>
+        <Route path="support" element={<Support/>}/>
+
       </Route>
     </Route>
   ))
