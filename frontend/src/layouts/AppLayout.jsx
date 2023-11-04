@@ -20,11 +20,11 @@ const AppLayout = (props) => {
           { name: "Техпідтримка", icon: chatIcon, url: "/app/student/support" },
         ])
       : setPages([
-        { name: "Кабінет", icon: cabinetIcon },
-        { name: "Розклад", icon: scheduleIcon },
-        { name: "Е-Перепустка", icon: scheduleIcon },
-        { name: "Новини", icon: newsIcon },
-        { name: "Техпідтримка", icon: chatIcon },
+          { name: "Кабінет", icon: cabinetIcon },
+          { name: "Розклад", icon: scheduleIcon },
+          { name: "Е-Перепустка", icon: scheduleIcon },
+          { name: "Новини", icon: newsIcon },
+          { name: "Техпідтримка", icon: chatIcon },
         ]);
   }, []);
 

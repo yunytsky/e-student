@@ -5,6 +5,7 @@ import Login from "./pages/www/Login"
 import Signup from "./pages/www/Signup"
 import Cabinet from "./pages/app/Cabinet"
 import Support from "./pages/app/Support"
+import News from "./pages/app/News"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -18,6 +19,8 @@ const router = createBrowserRouter(
       <Route path="app/student" element={<AppLayout type="student"/>}>
         <Route path="cabinet" element={<Cabinet/>}/>
         <Route path="support" element={<Support/>}/>
+        <Route path="news" element={<News/>}/>
+
       </Route>
     </Route>
   ))

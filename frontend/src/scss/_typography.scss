@@ -61,6 +61,13 @@ h6{
    line-height: 1.5;
 }
 
+@mixin body-2-medium {
+   font-size: 1rem;
+   font-weight: 500;
+   line-height: 1.5;
+}
+
+
 @mixin list{
    font-size: 1.2rem;
    font-weight: 400;

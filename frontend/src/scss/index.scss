@@ -152,14 +152,16 @@ html{
 
 //APP
 .app-container{
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;    
     overflow: hidden;
-    
 }
 
+
 .main{
+    flex:  0 1 100%;
     display: flex;
-    height: 100%;
 }
 
 
@@ -169,7 +171,9 @@ html{
 
 //Header
 .header.app{
+    box-sizing: border-box;
     display: flex;
+    background-color: #fff;
     justify-content: space-between;
     align-items: center;
     padding: 16px 32px;
@@ -251,7 +255,7 @@ html{
     color: $primary-blue;
 
     img{
-        filter: invert(18%) sepia(97%) saturate(5422%) hue-rotate(235deg) brightness(97%) contrast(101%);
+        filter: brightness(0%) invert(18%) sepia(97%) saturate(5422%) hue-rotate(235deg) brightness(97%) contrast(101%);
     }
 
     &::before {
@@ -266,32 +270,169 @@ html{
 }
 
 //Cabinet
-.cabinet, .support{
+.cabinet, .support, .news{
     h3{
-        margin-bottom: 8px;
+        margin-bottom: 16px;
     }
-
     p{
         color: $black-75;
-        &:last-of-type{
-            margin-bottom: 32px;
-        }
     }
-
 }
-.cabinet{
 
+
+.cabinet{
     a{
         @include link-2;
         color: $secondary-blue;
     }
+    p{
+        &:last-of-type{
+            margin-bottom: 32px;
+        }
+    }
 }
 //Support
+.support{
+    p{
+        margin-bottom: 32px;
+    }
+}
+
 .support-cta{
     @include button-2;
     padding: 0.65em 1.5em;
 }
 
+//News
+.news{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.news-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.news-items{
+    flex: 1 1 50%;
+    margin-right: 4em;
+}
+
+.news-item{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid $black-10;
+    padding: 0 0 16px 0;
+    margin-bottom: 16px;
+    &:last-child{
+        border-bottom: none;
+        padding: 0;
+        margin-bottom: 32px;
+    }
+    h4{
+        font-weight: 700;
+        margin-bottom: 8px;
+
+    }
+    p{
+        margin-bottom: 8px;
+    }
+}
+.news-item-date{
+    color: $black-50;
+    @include body-2;
+    margin-bottom: 4px;
+}
+
+.news-item-image{
+    margin-right: 1.75em;
+    img{
+        width: 12em;
+        height: 8em;
+        object-fit: cover;
+    }
+}
+
+.news-item-view-more{
+    @include link-2;
+    color: $black-75;
+}
+
+.news-information{
+    h5{
+        margin-bottom: 32px;
+    }
+    ul{
+        li{
+            @include body-2;
+            color: $black-75;
+            border-bottom: 1px solid $black-10;
+            padding: 16px 0;
+            span{
+                display: block;
+            }
+            strong{
+                @include body-2-medium;
+            }
+            #email{
+                @include link-2;
+                
+            }
+            #telegram{
+                @include link-1;
+                position: relative;
+                padding-left: 24px;
+                &:before{
+                    content: url("./assets/telegram.svg");
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 16px;
+                    height: 16px;
+                }
+
+            }
+
+            &:last-child{
+                span:first-child{
+                    margin-bottom: 16px;
+                }
+            }
+        }
+    }
+
+    flex: 0 0 20%;
+}
+
+.news-pagination{
+    display: flex;
+    margin-top: auto;
+}
+
+.news-pagination-button{
+    margin-top: auto;
+    color: $black-75;
+    width: 2.25em;
+    height: 2.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: .5em;
+    img{
+        width: 10px;
+        filter: brightness(0%) invert(18%) sepia(97%) saturate(5422%) hue-rotate(235deg) brightness(97%) contrast(101%);
+    }
+}
+
+.news-pagination-button.active{
+    border: 1px solid $black-10;
+    color: $primary-blue;
+    box-shadow: $shadow-main;
+    border-radius: 4px;
+    @include body-1-medium;
+}
 
 //Forms
 @import "forms";
@@ -306,8 +447,6 @@ html{
     @include body-2;
     color: $black-50;
 }
-
-
 
 //--------------------
 //MEDIA QUERIES
