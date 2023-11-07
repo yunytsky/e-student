@@ -18,11 +18,22 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login/>}/>
       <Route path="signup" element={<Signup/>}/>
 
-      <Route path="app/student" element={<AppLayout type="student"/>}>
+      <Route path="app">
+
+      <Route path="student" element={<AppLayout type="student"/>}>
         <Route path="cabinet" element={<Cabinet/>}/>
         <Route path="support" element={<Support/>}/>
         <Route path="news" element={<News/>}/>
         <Route path="schedule" element={<Schedule/>}/>
+      </Route>
+
+      <Route path="dweller" element={<AppLayout type="dweller"/>}>
+        <Route path="cabinet" element={<Cabinet/>}/>
+        <Route path="support" element={<Support/>}/>
+        <Route path="news" element={<News/>}/>
+        <Route path="schedule" element={<Schedule/>}/>
+      </Route>
+
       </Route>
 
       <Route path="*" element={<Error/>} />
