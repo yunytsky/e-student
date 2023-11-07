@@ -8,6 +8,7 @@ import Support from "./pages/app/Support"
 import News from "./pages/app/News"
 import Schedule from "./pages/app/Schedule"
 import Error from "./pages/Error"
+import Documents from "./pages/app/Documents"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         <Route path="support" element={<Support/>}/>
         <Route path="news" element={<News/>}/>
         <Route path="schedule" element={<Schedule/>}/>
+        <Route path="documents" element={<Documents/>}/>
       </Route>
 
       </Route>
