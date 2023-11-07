@@ -270,7 +270,7 @@ html{
 }
 
 //Cabinet
-.cabinet, .support, .news{
+.cabinet, .support, .news, .schedule{
     h3{
         margin-bottom: 16px;
     }
@@ -432,6 +432,27 @@ html{
     box-shadow: $shadow-main;
     border-radius: 4px;
     @include body-1-medium;
+}
+
+//Schedule
+.schedule-inputs{
+    margin-bottom: 8px;
+}
+
+.schedule-tabs{
+    border-bottom: 1px solid $black-10;
+}
+
+.schedule-tab{
+    @include body-1-medium;
+    margin-right: 4em;
+    padding-bottom: 8px;
+}
+
+.schedule-tab.active{
+    color: $primary-blue;
+    font-weight: 700;
+    border-bottom: 3px solid $primary-blue;
 }
 
 //Forms

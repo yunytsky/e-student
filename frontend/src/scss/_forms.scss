@@ -17,11 +17,15 @@
     }
 }
 
-.form-input{
+.form-input, .schedule-select{
     padding: 1.2em 1em;
     border: 1px solid $black-25;
     border-radius: 100px;
     margin-bottom: 32px;
+}
+
+.schedule-select{
+    min-width: 15em;
 }
 
 .form-submit-button{
