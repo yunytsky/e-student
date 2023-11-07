@@ -5,8 +5,24 @@ const Documents = () => {
         <ul className="documents-list">
           <li className="document">
             <span>Договір на проживання</span>
-            <a href="" className="documents-download-button button-empty">Завантажити</a>
-            <a href="" className="documents-preview-button">Переглянути</a>
+            <div className="document-links">
+                <a href="" className="document-download-button button-empty">Завантажити</a>
+                <a href="" className="document-preview-button">Переглянути</a>
+            </div>
+          </li>
+          <li className="document">
+            <span>Правила внутрішнього розпорядку в студентських гуртожитках</span>
+            <div className="document-links">
+                <a href="" className="document-download-button button-empty">Завантажити</a>
+                <a href="" className="document-preview-button">Переглянути</a>
+            </div>
+          </li>
+          <li className="document">
+            <span>Положення про ОСС студмістечка</span>
+            <div className="document-links">
+                <a href="" className="document-download-button button-empty">Завантажити</a>
+                <a href="" className="document-preview-button">Переглянути</a>
+            </div>
           </li>
         </ul>
       </div>

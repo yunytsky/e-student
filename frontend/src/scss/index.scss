@@ -322,7 +322,7 @@ html{
 }
 
 //Cabinet
-.cabinet, .support, .news, .schedule{
+.cabinet, .support, .news, .schedule, .documents{
     h3{
         margin-bottom: 16px;
     }
@@ -509,6 +509,27 @@ html{
     font-weight: 700;
     border-bottom: 3px solid $primary-blue;
 }
+
+//Documents
+.document{
+    span{
+        display: inline-block;
+        color: $black-75;
+        margin-bottom: 8px;
+    }
+    margin-bottom: 1.5em;
+}
+
+.document-download-button{
+    padding: .5em 1em;
+    margin-right: 16px;
+    @include button-2;
+}
+
+.document-preview-button{
+    @include link-1;
+}
+
 
 //Forms
 @import "forms";
