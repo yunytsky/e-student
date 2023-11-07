@@ -1,3 +1,7 @@
+input::placeholder{
+    color: $black-25;
+}
+
 .signup-form, .login-form{
     display: flex;
     flex-direction: column;
@@ -24,15 +28,12 @@
     margin-bottom: 32px;
 }
 
-.schedule-select{
-    min-width: 15em;
-}
 
 .form-submit-button{
     @include button-1;
     padding: 1em 3em; 
     max-width: 80%;
-    margin: 0 auto 16px auto;
+    margin: 56px auto 16px auto;
 }
 
 .form-auxiliary-link{
@@ -45,7 +46,7 @@
 }
 
 .form-checkbox-label {
-    margin: 0 auto 64px auto !important;
+    margin: 0 auto !important;
     position: relative;
     padding-left: 32px;
     cursor: pointer;
@@ -57,6 +58,19 @@
     input:checked~.custom-checkbox {
         border: 1px solid $primary-blue;
         background-color: $primary-blue;
+        &::before{
+            content: "";
+            background-image: url("./assets/checkmark.svg");
+            filter: brightness(0) invert(100%);
+
+            background-repeat: no-repeat;
+            background-size: 14px 10px;
+            position: absolute;
+            top: 2.5px;
+            left: 1px;
+            width: 14px;
+            height: 10px;
+        }
     }
 }
 .form-checkbox{
@@ -80,5 +94,24 @@
 .forgotten-password-link{
     @include link-2;
     color: $black-50;
-    margin: -16px 0 64px 0;
+    margin: -16px 0 0 0;
+}
+
+.schedule-select option[disabled] {
+    color: #999 !important; /* Placeholder text color */
+}
+
+.form-error-message{
+    color: $error;
+    margin: -24px 0 24px 0;
+}
+
+.form-error-message.tos{
+    text-align: center;
+    margin: -48px 0 48px 0;
+
+}
+
+.form-error-message~.forgotten-password-link{
+    margin-top: 0;
 }

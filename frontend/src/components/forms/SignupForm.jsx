@@ -40,6 +40,7 @@ const SignupForm = () => {
         <input
           className="form-input"
           name="studentCard"
+          placeholder="AA 00 00 00 00 00"
           id="studentCard"
           value={formik.values.studentCard}
           onChange={formik.handleChange}
@@ -129,7 +130,7 @@ const SignupForm = () => {
         </label>
 
         {formik.errors.acceptTos && formik.touched.acceptTos && (
-          <span className="form-error-message">
+          <span className="form-error-message tos">
             {formik.errors.acceptTos}
           </span>
         )}
@@ -143,7 +144,7 @@ const SignupForm = () => {
         </button>
 
         <span className="form-auxiliary-link">
-          Уже є акаунт? <Link to="#">Увійти</Link>
+          Уже є акаунт? <Link to="/login">Увійти</Link>
         </span>
 
         {submitError && (

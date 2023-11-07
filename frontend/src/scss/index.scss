@@ -209,6 +209,20 @@ html{
     
     .header-user{
         @include body-2;
+        position: relative;
+        display: flex;
+        align-items: center;
+        &::after{
+            content: "";
+            margin-left: 8px;
+            width: 0;
+            height: 0;
+            border-radius: 2px;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 7px solid $primary-blue;
+          
+        }
     }
 }
 
@@ -283,7 +297,7 @@ html{
 .cabinet{
     a{
         @include link-2;
-        color: $secondary-blue;
+        color: $black-75;
     }
     p{
         &:last-of-type{
@@ -437,6 +451,9 @@ html{
 //Schedule
 .schedule-inputs{
     margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
 }
 
 .schedule-tabs{

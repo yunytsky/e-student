@@ -34,16 +34,17 @@ const LoginForm = () => {
         </label>
         <input
           className="form-input"
+          placeholder="AA 00 00 00 00 00"
           name="studentCard"
           id="studentCard"
           value={formik.values.studentCard}
           onChange={formik.handleChange}
         />
-                {formik.errors.studentCard &&
-          formik.touched.studentCard && (
-            <span className="form-error-message">{formik.errors.studentCard}</span>
-          )}
-
+        {formik.errors.studentCard && formik.touched.studentCard && (
+          <span className="form-error-message">
+            <h6>{formik.errors.studentCard}</h6>
+          </span>
+        )}
 
         <label htmlFor="password">
           Пароль <span>*</span>
@@ -56,28 +57,28 @@ const LoginForm = () => {
           value={formik.values.password}
           onChange={formik.handleChange}
         />
-                {formik.errors.password &&
-          formik.touched.password && (
-            <span className="form-error-message">{formik.errors.password}</span>
-          )}
 
-        <Link className="forgotten-password-link" to="#">Забули пароль?</Link>
+        {formik.errors.password && formik.touched.password && (
+          <span className="form-error-message">
+            <h6>{formik.errors.password}</h6>
+          </span>
+        )}
 
-        <button
-          type="submit"
-          className="form-submit-button button-filled"
-        >
+        <Link className="forgotten-password-link" to="#">
+          Забули пароль?
+        </Link>
+
+        <button type="submit" className="form-submit-button button-filled">
           Зареєструватись
         </button>
 
         <span className="form-auxiliary-link">
-          Немає акаунту? <Link to="#">Зареєструватись</Link>
+          Немає акаунту? <Link to="/signup">Зареєструватись</Link>
         </span>
-        
-        {submitError &&
-        (
-            <h6 className="form-submit-error">Error submitting the form</h6>
-          )}
+
+        {submitError && (
+          <h6 className="form-submit-error">Error submitting the form</h6>
+        )}
       </form>
     );  
 };

@@ -33,11 +33,7 @@ export const signupSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
   studentCard: yup
     .string()
-    .test(
-      "len",
-      "Номер квитка містить 12 символів",
-      (value) => value.length === 12
-    )
+    .matches(/^[A-Z]{2}\d{8}$/, "Неправильний формат")
     .required("Обов'язкове поле"),
   password: yup
     .string()

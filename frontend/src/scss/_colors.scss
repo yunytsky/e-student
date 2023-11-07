@@ -10,12 +10,16 @@ $black-5-60: rgba($color: $black-5, $alpha: .6);
 
 
 //Primary
-$primary-blue: #1B40F9; 
+$primary-blue: #2d4ef2; 
 $primary-yellow: #FFD338; 
 
 //Secondary
 $secondary-blue: #5259e3; 
 $blue-bg: rgba($color: $primary-blue, $alpha: .08);
 
+//Additional
+$error: #F86355;
+
 //Shadows
 $shadow-main: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+
