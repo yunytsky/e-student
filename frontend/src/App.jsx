@@ -34,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="news" element={<News/>}/>
         <Route path="schedule" element={<Schedule/>}/>
         <Route path="documents" element={<Documents/>}/>
+        <Route path="permit" element={<Permit/>}/>
       </Route>
 
       </Route>
