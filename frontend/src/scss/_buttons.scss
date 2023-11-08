@@ -1,0 +1,19 @@
+ //Buttons
+ .button-filled{
+    border: 1px solid $primary-blue;
+    background-color: $primary-blue;
+    border-radius: 64px;
+    color: $white;
+    a{
+        color: $white;
+    }
+ }
+
+ .button-empty{
+    border: 1px solid $primary-blue;
+    border-radius: 64px;
+    color: $primary-blue;
+    a{
+        color: $primary-blue;
+    }
+ }

@@ -1,0 +1,99 @@
+//Header
+.header.www{
+    margin-bottom: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 32px;
+    .support-link{
+        @include link-1;
+        margin-right: 2.5em;
+        position: relative;
+        padding: 0 0 0 1.5em;
+        &::before{
+            content: url("./assets/tryzub.svg");
+            position: absolute;
+            left: 0;
+            top: -.4em;
+        }
+    }
+
+    .header-cta{
+        @include button-2;
+        padding: .5em 1em;
+        margin-right: 1em;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+    
+}
+
+.logo{
+    font-weight: 700;
+    font-size: 1.4rem;
+    user-select: none;
+    position: relative;
+    padding-left: 32px;
+    text-transform: uppercase;
+    &::before{
+        content: url("./assets/logo.svg");
+        position: absolute;
+        top: .1em;
+        left: 0;        
+    }
+}
+
+//Hero
+.hero-container{
+    padding: 0 1em;
+    margin: auto;
+}
+.hero{
+    
+    max-width: 50em;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    text-align: center;
+    h4{
+        font-weight: 700;
+        color: $black-50;
+    }
+    h1{
+        margin-bottom: 24px;
+        span{
+            background-color: $primary-yellow;
+        }
+    }
+}
+
+.hero-features{
+    text-transform: uppercase;
+    color: $black-50;
+    letter-spacing: 1.5px;
+    display: flex;
+    margin-bottom: 56px;
+    li{
+        position: relative;
+        margin-right: 2em;
+    }
+    li:not(:last-child):after{
+        content: "";
+        width: 1px;
+        height: .875em;
+        position: absolute;
+        bottom: .4em;
+        right: -1em;
+        background-color: $black-50;
+    }
+    li:last-child{
+        margin-right: 0;
+    }
+}
+
+.hero-cta{
+    @include button-1;
+    padding: .875em 2.65em;
+}

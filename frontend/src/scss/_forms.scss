@@ -28,7 +28,6 @@ input::placeholder{
     margin-bottom: 32px;
 }
 
-
 .form-submit-button{
     @include button-1;
     padding: 1em 3em; 
@@ -73,6 +72,7 @@ input::placeholder{
         }
     }
 }
+
 .form-checkbox{
     position: absolute;
     opacity: 0;
