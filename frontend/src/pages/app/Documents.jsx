@@ -1,7 +1,7 @@
 const Documents = () => {
     return (
       <div className="documents">
-        <h3>Коваль Сергій Іванович</h3>
+        <h3>Документи</h3>
         <ul className="documents-list">
           <li className="document">
             <span>Договір на проживання</span>
