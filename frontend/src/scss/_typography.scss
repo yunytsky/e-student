@@ -2,6 +2,7 @@
    font-family: 'Mariupol';
    src: url(fonts/Mariupol-Regular.ttf);
 }
+
 //--------------------
 body {
    font-family: 'Mariupol', sans-serif;
@@ -67,13 +68,6 @@ h6{
    line-height: 1.5;
 }
 
-
-@mixin list{
-   font-size: 1.2rem;
-   font-weight: 400;
-   line-height: 1.5;
-   letter-spacing: 2%;
-}
 
 //--------------------
 @mixin button-1 {

@@ -9,6 +9,7 @@ import News from "./pages/app/News"
 import Schedule from "./pages/app/Schedule"
 import Error from "./pages/Error"
 import Documents from "./pages/app/Documents"
+import Permit from "./pages/app/Permit"
 
 import AppLayout from "./layouts/AppLayout"
 
