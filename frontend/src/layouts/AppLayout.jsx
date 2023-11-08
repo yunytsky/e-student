@@ -37,7 +37,6 @@ const AppLayout = (props) => {
 
   //Protect layout
   useEffect(() => {
-    console.log(location)
     if(location.pathname === "/app/dweller"){
       navigate("/app/dweller/cabinet");
     }else if( location.pathname === "/app/student"){

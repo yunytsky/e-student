@@ -28,6 +28,10 @@ input::placeholder{
     margin-bottom: 32px;
 }
 
+.schedule-select{
+    max-width: 30%;
+}
+
 .form-submit-button{
     @include button-1;
     padding: 1em 3em; 
