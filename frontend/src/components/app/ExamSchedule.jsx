@@ -1,85 +1,21 @@
-import MUIDataTable from "mui-datatables";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-const getMuiTheme = createTheme({
-  components: {
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          boxShadow: "none",
-        },
-      },
-    },
-    MuiTable: {
-      styleOverrides: {
-        root: {
-          boxShadow: "none",
-          borderLeft: "1px solid #E6E6E8", 
-          borderTop: "1px solid #E6E6E8",
-          
-        },
-      },
-    },
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          borderBottom: "1px solid #E6E6E8",
-          borderRight: "1px solid #E6E6E8",
-        },
-      },
-    },
-
-    MUIDataTableHeadCell: {
-      styleOverrides: {
-        root: {
-          fontSize: "1rem !important",
-          fontWeight: "500 !important",
-          fontFamily: '"Mariupol", sans-serif !important', 
-        },
-      },
-    },
-
-    MUIDataTableBodyCell:{
-        styleOverrides: {
-            root: {
-                fontFamily: '"Mariupol", sans-serif !important', 
-            }
-        }
-    },
-    
-  },
-});
+import Table from "./Table";
 
 const ExamSchedule = () => {
-    const columns = [
+      const columns = [
         {
-          label: 'Назва предмету',
-          name: 'Title',
-          options: {
-          },
+          name: 'Назва предмету'
         },
         {
           name: 'Тип контролю',
-          options: {
-            print: false,
-          },
         },
         {
           name: 'Дата',
-          options: {
-            print: false,
-          },
         },
         {
           name: 'Час',
-          options: {
-          },
         },
         {
           name: 'Авдиторія',
-          options: {
-          },
         },
       ];
     
@@ -92,24 +28,9 @@ const ExamSchedule = () => {
 
       ];
     
-      const options = {
-        selectableRows: "none",
-        responsive: 'standard',
-        pagination: false,
-        download: false, 
-        filter: false,   
-        print: false,   
-        search: false,  
-        viewColumns: false,
-        sort: false
-      };
-    
-
-    return(
-        <div className="exam-schedule">
-       <ThemeProvider theme={getMuiTheme}>
-        <MUIDataTable data={data} columns={columns} options={options} />
-      </ThemeProvider>
+    return (
+      <div className="exam-schedule">
+        <Table columns={columns} data={data}/>
       </div>
     );
 };
