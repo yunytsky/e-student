@@ -33,13 +33,13 @@ namespace E_Student.Controllers
 
             if (user != null)
             {
-                //var token = GenerateToken(user);
                 var student = FindStudent(user);
                 if (student != null)
                 {
                     user.Name = student.FullName;
                     user.IsDormResident = student.DormNumber != "";
-                    return Ok($"Студент з номером {student.Number} є б базі, його звати {student.FullName}");
+                    var token = GenerateToken(user);
+                    return Ok(token);
                 }
 
                 return Ok("Студента нема?");
@@ -81,7 +81,10 @@ namespace E_Student.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
-                new Claim(ClaimTypes.GivenName, user.Name)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.SerialNumber, user.StudentNumber),
+                new Claim(ClaimTypes.GivenName, user.Name),
+                new Claim(ClaimTypes.IsPersistent, user.IsDormResident.ToString())
             };
             var token = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Audience"], claims,
                 expires: DateTime.Now.AddMinutes(10), signingCredentials: credentials);
