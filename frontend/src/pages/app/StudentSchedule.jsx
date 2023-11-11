@@ -3,7 +3,7 @@ import LessonsSchedule from "../../components/app/LessonsSchedule";
 import ExamSchedule from "../../components/app/ExamSchedule";
 import TeachersInfo from "../../components/app/TeachersInfo";
 
-const Schedule = () => {
+const StudentSchedule = () => {
     const [tab, setTab] = useState("lessons-schedule");
     const [group, setGroup] = useState("");
     const [subject, setSubject] = useState("");
@@ -72,7 +72,6 @@ const Schedule = () => {
 
     return (
       <div className="schedule">
-        {/* ADD CURRENT DATE LATER */}
         <h3>
           {" "}
           {week === "odd"
@@ -164,4 +163,4 @@ const Schedule = () => {
     );
 }
 
-export default Schedule;
+export default StudentSchedule;

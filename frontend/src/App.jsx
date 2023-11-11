@@ -6,10 +6,11 @@ import Signup from "./pages/www/Signup"
 import Cabinet from "./pages/app/Cabinet"
 import Support from "./pages/app/Support"
 import News from "./pages/app/News"
-import Schedule from "./pages/app/Schedule"
 import Error from "./pages/Error"
 import Documents from "./pages/app/Documents"
 import Permit from "./pages/app/Permit"
+import StudentSchedule from "./pages/app/StudentSchedule"
+import DwellerSchedule from "./pages/app/DwellerSchedule"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -23,17 +24,17 @@ const router = createBrowserRouter(
       <Route path="app">
 
       <Route path="student" element={<AppLayout type="student"/>}>
-        <Route path="cabinet" element={<Cabinet/>}/>
+        <Route path="cabinet" element={<Cabinet type="student"/>}/>
         <Route path="support" element={<Support/>}/>
-        <Route path="news" element={<News/>}/>
-        <Route path="schedule" element={<Schedule/>}/>
+        <Route path="news" element={<News type="student"/>}/>
+        <Route path="schedule" element={<StudentSchedule/>}/>
       </Route>
 
       <Route path="dweller" element={<AppLayout type="dweller"/>}>
-        <Route path="cabinet" element={<Cabinet/>}/>
+        <Route path="cabinet" element={<Cabinet type="dweller" />}/>
         <Route path="support" element={<Support/>}/>
-        <Route path="news" element={<News/>}/>
-        <Route path="schedule" element={<Schedule/>}/>
+        <Route path="news"  element={<News type="dweller"/>}/>
+        <Route path="schedule" element={<DwellerSchedule/>}/>
         <Route path="documents" element={<Documents/>}/>
         <Route path="permit" element={<Permit/>}/>
       </Route>
