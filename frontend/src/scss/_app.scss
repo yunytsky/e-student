@@ -55,9 +55,15 @@
     }
 
     .header-switch {
-        color: $primary-blue;
         @include link-2;
+        color: $primary-blue;
         margin-right: 1.65em;
+        &:hover{
+            color: $black-75;
+        }
+        &:active{
+            color: $black;
+        }
     }
 
     .header-user {

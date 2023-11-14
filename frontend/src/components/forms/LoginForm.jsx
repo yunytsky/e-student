@@ -64,12 +64,12 @@ const LoginForm = () => {
           </span>
         )}
 
-        <Link className="forgotten-password-link" to="#">
+        <Link className="forgot-password-link" to="#">
           Забули пароль?
         </Link>
 
         <button type="submit" className="form-submit-button button-filled">
-          Зареєструватись
+          Увійти
         </button>
 
         <span className="form-auxiliary-link">

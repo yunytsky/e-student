@@ -26,6 +26,12 @@ input::placeholder{
     border: 1px solid $black-25;
     border-radius: 100px;
     margin-bottom: 32px;
+    &:hover{
+        border: 1px solid $black-50;
+    }
+    &:focus{
+        border: 1px solid $secondary-blue;
+    }
 }
 
 .schedule-select{
@@ -35,7 +41,7 @@ input::placeholder{
 .form-submit-button{
     @include button-1;
     padding: 1em 3em; 
-    max-width: 80%;
+    width: 15em;
     margin: 56px auto 16px auto;
 }
 
@@ -45,6 +51,10 @@ input::placeholder{
     a{
         @include body-1-medium;
         color: $secondary-blue;
+        &:hover{
+            color: $blue-dark;
+
+        }
     }
 }
 
@@ -69,7 +79,7 @@ input::placeholder{
             background-repeat: no-repeat;
             background-size: 14px 10px;
             position: absolute;
-            top: 2.5px;
+            top: 2.25px;
             left: 1px;
             width: 14px;
             height: 10px;
@@ -95,10 +105,22 @@ input::placeholder{
     border-radius: 4px;
 }
 
-.forgotten-password-link{
+.forgot-password-link{
     @include link-2;
     color: $black-50;
     margin: -16px 0 0 0;
+    &:hover{
+        color: $black-75;
+    }
+    &:active{
+        color: $black-75;
+    }
+}
+
+.schedule-select{
+    &:focus{
+        border: 1px solid $black-25;
+    }
 }
 
 .schedule-select option[disabled] {
@@ -118,4 +140,12 @@ input::placeholder{
 
 .form-error-message~.forgotten-password-link{
     margin-top: 0;
+}
+
+select{
+    padding-right: 40px !important;
+    background-image: url("./assets/triangle.svg");
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+    background-size: .58em;
 }

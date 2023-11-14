@@ -5,7 +5,7 @@ import Footer from "../../components/www/Footer";
 const Login = () => {
     return(
         <>
-            <Header/>
+            <Header type="auth"/>
             <div className="content">
                 <LoginForm/>
             </div>

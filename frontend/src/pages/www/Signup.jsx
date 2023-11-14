@@ -4,7 +4,7 @@ import Footer from "../../components/www/Footer";
 const Signup = () => {
     return(
         <>
-            <Header/>
+            <Header type="auth"/>
             <div className="content">
                 <SignupForm/>
             </div>

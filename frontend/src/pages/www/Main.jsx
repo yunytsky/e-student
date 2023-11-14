@@ -6,7 +6,7 @@ import Footer from "../../components/www/Footer";
 const Main = () => {
     return(
         <>
-            <Header/>
+            <Header type="main"/>
             <div className="hero-container">
                 <div className="hero">
                     <h4>
@@ -21,7 +21,7 @@ const Main = () => {
                         <li>Новини</li>
                         <li>Документи</li>
                     </ul>
-                    
+
                     <Link to="/login" className="button-filled hero-cta">Увійти</Link>
                 </div>
             </div>
