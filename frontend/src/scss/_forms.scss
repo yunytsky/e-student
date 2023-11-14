@@ -26,6 +26,7 @@ input::placeholder{
     border: 1px solid $black-25;
     border-radius: 100px;
     margin-bottom: 32px;
+    width: 100%;
     &:hover{
         border: 1px solid $black-50;
     }
@@ -109,6 +110,7 @@ input::placeholder{
     @include link-2;
     color: $black-50;
     margin: -16px 0 0 0;
+    z-index: 999;
     &:hover{
         color: $black-75;
     }
@@ -149,3 +151,33 @@ select{
     background-position: 97% 50%;
     background-size: .58em;
 }
+
+.toggle-password-wrapper{
+    position: relative;
+ }
+ 
+ .toggle-password{
+    cursor: pointer;
+    position: absolute;
+    right: .25em;
+    top: 1.2em;
+    height: 1.5em;
+    width: 1.5em;
+    user-select: none;
+    img{
+       width: 18px;
+       height: 18px;
+       filter: $black-50-svg;
+    }
+ 
+    &:hover{
+       img{
+          filter: $black-75-svg;
+       }
+    }
+    &:active{
+       img{
+          filter: $black-75-svg;
+       }
+    }
+ }
