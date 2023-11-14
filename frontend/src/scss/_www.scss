@@ -5,28 +5,43 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px 32px;
-    .support-link{
-        @include link-1;
-        margin-right: 2.5em;
-        position: relative;
-        padding: 0 0 0 1.5em;
-        &::before{
-            content: url("./assets/tryzub.svg");
-            position: absolute;
-            left: 0;
-            top: -.4em;
-        }
-    }
+}
 
-    .header-cta{
-        @include button-2;
-        padding: .5em 1em;
-        margin-right: 1em;
-        &:last-child{
-            margin-right: 0;
+
+.support-link{
+    @include link-1;
+    color: $black-75;
+    margin-right: 2em;
+    position: relative;
+    padding: 0 0 0 1.5em;
+    &::before{
+        content: url("./assets/tryzub.svg");
+        position: absolute;
+        left: 0;
+        top: -.4em;
+        filter: $black-75-svg;
+    }
+    &:hover{
+        color: $black;
+        &::before{
+            filter: $black-svg;
         }
     }
-    
+    &:active{
+        color: $black;
+        &::before{
+            filter: $black-svg;
+        }
+    }
+}
+
+.header-cta{
+    @include button-2;
+    padding: .65em 1.25em;
+    margin-right: 1em;
+    &:last-child{
+        margin-right: 0;
+    }
 }
 
 .logo{
@@ -69,6 +84,7 @@
 }
 
 .hero-features{
+    @include body-2;
     text-transform: uppercase;
     color: $black-50;
     letter-spacing: 1.5px;
@@ -94,5 +110,5 @@
 
 .hero-cta{
     @include button-1;
-    padding: .875em 2.65em;
+    padding: .75em 2.75em;
 }

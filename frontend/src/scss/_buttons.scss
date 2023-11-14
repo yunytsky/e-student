@@ -7,6 +7,24 @@
     a{
         color: $white;
     }
+    &:hover{
+        color: $primary-blue;
+        background-color: #fff;
+        a{
+            color: $primary-blue;
+
+        }
+    }
+
+    &:active{
+        color: $blue-dark;
+        background-color: #fff;
+
+        a{
+            color: $blue-dark;
+        }
+        
+    }
  }
 
  .button-empty{
@@ -15,5 +33,24 @@
     color: $primary-blue;
     a{
         color: $primary-blue;
+    }
+
+    &:hover{
+        color: $white;
+        background-color: $primary-blue;
+        a{
+            color: $white;
+
+        }
+    }
+
+    &:active{
+        color: $white;
+        background-color: $blue-dark;
+
+        a{
+            color: $white;
+        }
+        
     }
  }

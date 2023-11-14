@@ -21,9 +21,8 @@ const Main = () => {
                         <li>Новини</li>
                         <li>Документи</li>
                     </ul>
-                    <button className="button-filled hero-cta">
-                        <Link to="#">Увійти</Link>
-                    </button>
+                    
+                    <Link to="/login" className="button-filled hero-cta">Увійти</Link>
                 </div>
             </div>
             <Footer/>

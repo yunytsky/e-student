@@ -18,9 +18,17 @@ $secondary-blue: #5259e3;
 $blue-bg: rgba($color: $primary-blue, $alpha: .08);
 
 //Additional
+$blue-dark: rgb(35, 67, 226);
 $error: #F86355;
 
 //Shadows
 $shadow-main: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
 $shadow-secondary: 0px 0.33207px 0.6088px 0px rgba(61, 63, 79, 0.01), 0px 0.79801px 1.46302px 0px rgba(61, 63, 79, 0.01), 0px 1.50259px 2.75474px 0px rgba(61, 63, 79, 0.01), 0px 2.68036px 4.91399px 0px rgba(61, 63, 79, 0.02), 0px 5.01331px 9.19107px 0px rgba(61, 63, 79, 0.02), 0px 12px 22px 0px rgba(61, 63, 79, 0.03);
+
+//SVG filters
+$black-75-svg: brightness(0%) invert(22%) sepia(6%) saturate(1875%) hue-rotate(199deg) brightness(97%) contrast(82%);
+$black-svg: brightness(0%) invert(6%) sepia(18%) saturate(3818%) hue-rotate(213deg) brightness(100%) contrast(109%);
+$primary-blue-svg: brightness(0%) invert(19%) sepia(98%) saturate(3617%) hue-rotate(232deg) brightness(94%) contrast(98%);
+
+
 
