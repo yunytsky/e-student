@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Student.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/")]
     [ApiController]
     public class UserController : ControllerBase
     {

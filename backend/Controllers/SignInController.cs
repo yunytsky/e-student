@@ -53,7 +53,7 @@ namespace E_Student.Controllers
             
             var newUser = new UserModel()
             {
-                Email = userSignIn.Email, Username = userSignIn.Username, StudentNumber = userSignIn.StudentNumber,
+                //Email = userSignIn.Email, Username = userSignIn.Username, StudentNumber = userSignIn.StudentNumber,
                 Password = userSignIn.Password, Name = currentStudent.FullName,
                 IsDormResident = currentStudent.DormPassNumber != "OO 00000000"
             };
@@ -82,7 +82,7 @@ namespace E_Student.Controllers
             var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Username),
-                new Claim(ClaimTypes.Email, user.Email),
+                //new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.SerialNumber, user.StudentNumber),
                 new Claim(ClaimTypes.GivenName, user.Name),
                 new Claim(ClaimTypes.IsPersistent, user.IsDormResident.ToString())
