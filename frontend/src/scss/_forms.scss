@@ -1,0 +1,183 @@
+input::placeholder{
+    color: $black-25;
+}
+
+.signup-form, .login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 30em;
+    padding: 0 1.5em;
+    margin: 0 auto;
+    h3{
+        text-align: center;
+        margin-bottom: 56px;
+    }
+    label{
+        margin-bottom: 8px;
+        span{
+            color: $secondary-blue;
+        }
+    }
+}
+
+.form-input, .schedule-select{
+    padding: 1.2em 1em;
+    border: 1px solid $black-25;
+    border-radius: 100px;
+    margin-bottom: 32px;
+    width: 100%;
+    &:hover{
+        border: 1px solid $black-50;
+    }
+    &:focus{
+        border: 1px solid $secondary-blue;
+    }
+}
+
+.schedule-select{
+    max-width: 30%;
+}
+
+.form-submit-button{
+    @include button-1;
+    padding: 1em 3em; 
+    width: 15em;
+    margin: 56px auto 16px auto;
+}
+
+.form-auxiliary-link{
+    text-align: center;
+    color: $black-50;
+    a{
+        @include body-1-medium;
+        color: $secondary-blue;
+        &:hover{
+            color: $blue-dark;
+
+        }
+    }
+}
+
+.form-checkbox-label {
+    margin: 0 auto !important;
+    position: relative;
+    padding-left: 32px;
+    cursor: pointer;
+
+    &:hover input~.custom-checkbox {
+        background-color: $black-5;
+    }
+
+    input:checked~.custom-checkbox {
+        border: 1px solid $primary-blue;
+        background-color: $primary-blue;
+        &::before{
+            content: "";
+            background-image: url("./assets/checkmark.svg");
+            filter: brightness(0) invert(100%);
+
+            background-repeat: no-repeat;
+            background-size: 14px 10px;
+            position: absolute;
+            top: 2.25px;
+            left: 1px;
+            width: 14px;
+            height: 10px;
+        }
+    }
+}
+
+.form-checkbox{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.custom-checkbox {
+    height: 18px;
+    width: 18px;
+    border: 1px solid $black-50;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    border-radius: 4px;
+}
+
+.forgot-password-link{
+    @include link-2;
+    color: $black-50;
+    margin: -16px 0 0 0;
+    z-index: 999;
+    &:hover{
+        color: $black-75;
+    }
+    &:active{
+        color: $black-75;
+    }
+}
+
+.schedule-select{
+    &:focus{
+        border: 1px solid $black-25;
+    }
+}
+
+.schedule-select option[disabled] {
+    color: #999 !important; /* Placeholder text color */
+}
+
+.form-error-message{
+    color: $error;
+    margin: -24px 0 24px 0;
+}
+
+.form-error-message.tos{
+    text-align: center;
+    margin: -48px 0 48px 0;
+
+}
+
+.form-error-message~.forgotten-password-link{
+    margin-top: 0;
+}
+
+select{
+    padding-right: 40px !important;
+    background-image: url("./assets/triangle.svg");
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+    background-size: .58em;
+}
+
+.toggle-password-wrapper{
+    position: relative;
+ }
+ 
+ .toggle-password{
+    cursor: pointer;
+    position: absolute;
+    right: .25em;
+    top: 1.2em;
+    height: 1.5em;
+    width: 1.5em;
+    user-select: none;
+    img{
+       width: 18px;
+       height: 18px;
+       filter: $black-50-svg;
+    }
+ 
+    &:hover{
+       img{
+          filter: $black-75-svg;
+       }
+    }
+    &:active{
+       img{
+          filter: $black-75-svg;
+       }
+    }
+ }
