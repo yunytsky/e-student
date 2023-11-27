@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net.Security;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,56 +13,58 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace E_Student.Controllers
 {
-    [Route("/sign-in")]
+    [Route("/sign-up")]
     [ApiController]
-    public class SignInController : ControllerBase
+    public class SignUpController : ControllerBase
     {
         private IConfiguration _config;
 
-        public SignInController(IConfiguration config)
+        public SignUpController(IConfiguration config)
         {
             _config = config;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult SignIn([FromBody] UserSignIn userSignIn)
+        public IActionResult SignIn([FromBody] UserSignUp userSignUp)
         {
-            var user = Authenticate(userSignIn);
-
-            if (user != null)
+            UserModel user;
+            try
             {
-                var student = FindStudent(user);
-                if (student != null)
-                {
-                    user.Name = student.FullName;
-                    user.IsDormResident = student.DormNumber != "";
-                    var token = GenerateToken(user);
-                    return Ok(token);
-                }
-
-                return Ok("Студента нема?");
+                user = CreateUser(userSignUp);
+                
+                var token = GenerateToken(user);
+                return Ok(token);
             }
-
-            return NotFound("User not found");
+            catch (Exception e)
+            {
+                return NotFound(e.Message);
+            }
         }
 
-        private UserModel Authenticate(UserSignIn userSignIn)
+        private UserModel CreateUser(UserSignUp userSignUp)
         {
-            var currentUser = UserConstants.Users.FirstOrDefault(o => 
-                (o.Username == userSignIn.InputString ||
-                 o.StudentNumber == userSignIn.InputString) && o.Password == userSignIn.Password);
+            var currentStudent = FindStudent(userSignUp.StudentNumber);
+            if (currentStudent == null)
+                throw new Exception($"There is no student with number {userSignUp.StudentNumber}.");
 
-            if (currentUser != null)
-                return currentUser;
-
-            return null;
+            if (UserConstants.Users.FirstOrDefault(o => o.Username == userSignUp.Username) != null)
+                throw new Exception($"User with name {userSignUp.Username} already exists.");
+            
+            var newUser = new UserModel()
+            {
+                Username = userSignUp.Username, StudentNumber = userSignUp.StudentNumber,
+                Password = userSignUp.Password, Name = currentStudent.FullName,
+                IsDormResident = currentStudent.DormPassNumber != "OO 00000000"
+            };
+            
+            UserConstants.Users.Add(newUser);
+            return newUser;
         }
 
-        private StudentModel FindStudent(UserModel user)
+        private StudentModel FindStudent(string number)
         {
-            var currentStudent = StudentConstants.Students.FirstOrDefault(o =>
-                o.Number == user.StudentNumber);
+            var currentStudent = StudentConstants.Students.FirstOrDefault(o => o.Number == number);
 
             if (currentStudent != null)
             {
