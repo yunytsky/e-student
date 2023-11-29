@@ -44,8 +44,7 @@ namespace E_Student.Controllers
             
             if (currentDormResident != null)
             {
-                return Ok($"Here will be all the necessary information about dorm resident\n" +
-                          $" Name: {currentDormResident.FullName}, number: {currentDormResident.DormPassNumber}");
+                return Ok(currentDormResident.GetFullInfo());
             }
 
             return NotFound("Something went wrong.");
