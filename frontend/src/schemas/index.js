@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const signupSchema = yup.object().shape({
   studentCard: yup
     .string()
-    .matches(/^[A-Z]{2}\d{8}$/, "Неправильний формат")
+    .matches(/^[A-Z]{2}\s\d{8}$/, "Неправильний формат")
     .required("Обов'язкове поле"),
   unit: yup
     .string()
@@ -33,12 +33,12 @@ export const signupSchema = yup.object().shape({
 export const loginSchema = yup.object().shape({
   studentCard: yup
     .string()
-    .matches(/^[A-Z]{2}\d{8}$/, "Неправильний формат")
+    .matches(/^[A-Z]{2}\s\d{8}$/, "Неправильний формат")
     .required("Обов'язкове поле"),
   password: yup
     .string()
     .min(6, "Пароль має містити принаймні 6 символів")
     .matches(/[a-z]/, "Пароль має містити принаймні одну маленьку літеру")
     .matches(/\d/, "Пароль має містити принаймні одну цифру")
-    .required("Обов'язкове поле")
+    .required("Обов'язкове поле"),
 });

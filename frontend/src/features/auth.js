@@ -2,11 +2,11 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //To come back later
-const API_BASE_URL = "";
+const API_BASE_URL = "http://localhost:7150";
 
-const signup = createAsyncThunk(
+export const signup = createAsyncThunk(
     "auth/signup",
-    async({studentCardNumber, unit, password}, {rejectWithValue}) => {
+    async({studentNumber, password}, {rejectWithValue}) => {
         try {
           const config = {
             headers: {
@@ -15,19 +15,23 @@ const signup = createAsyncThunk(
           };
 
           await axios.post(
-            `${API_BASE_URL}/signup`,
-            { studentCardNumber, unit, password },
+            `${API_BASE_URL}/sign-up`,
+            { studentNumber: studentNumber, password: password },
             config
           );
         } catch (err) {
             if(err.response && err.response.data.message){
-                return rejectWithValue(error.response.data.message)
+                return rejectWithValue(err.response.data.message)
             }else{
-                return rejectWithValue(error.message)
+                return rejectWithValue(err.message)
             }
         }
     }
 )
+
+// export const login = createAsyncThunk({
+
+// })
 
 const initialStateValue = {
     user: null,

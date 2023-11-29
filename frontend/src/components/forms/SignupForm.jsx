@@ -3,21 +3,20 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { signupSchema } from "../../schemas";
+import {useDispatch} from "react-redux";
 
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
+import { signup } from "../../features/auth";
 
 const SignupForm = () => {  
     const [submitError, setSubmitError] = useState(false);
+    const dispatch = useDispatch();
 
     const onSubmit = async (values,actions) => {
-        console.log("Form submitted");
         actions.resetForm();
-        try{
-            //api request here
-         }catch(err){
-
-         }
+        const data = {studentNumber: values.studentCard, password: values.password}
+        dispatch(signup(data));
     };
 
     //Password toggler
@@ -176,6 +175,7 @@ const SignupForm = () => {
             type="checkbox"
             name="acceptTos"
             id="acceptTos"
+            checked={formik.values.acceptTos}
             value={formik.values.acceptTos}
             onChange={formik.handleChange}
           />
