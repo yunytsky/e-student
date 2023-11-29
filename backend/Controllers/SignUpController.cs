@@ -18,6 +18,7 @@ namespace E_Student.Controllers
     public class SignUpController : ControllerBase
     {
         private IConfiguration _config;
+        DBController controller = DBController.GetInstance();
 
         public SignUpController(IConfiguration config)
         {
@@ -26,7 +27,7 @@ namespace E_Student.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult SignIn([FromBody] UserSignUp userSignUp)
+        public IActionResult SignUp([FromBody] UserSignUp userSignUp)
         {
             UserModel user;
             try
@@ -44,34 +45,20 @@ namespace E_Student.Controllers
 
         private UserModel CreateUser(UserSignUp userSignUp)
         {
-            var currentStudent = FindStudent(userSignUp.StudentNumber);
+            var currentStudent = controller.GetStudent(userSignUp.StudentNumber);
             if (currentStudent == null)
                 throw new Exception($"There is no student with number {userSignUp.StudentNumber}.");
-
-            if (UserConstants.Users.FirstOrDefault(o => o.Username == userSignUp.Username) != null)
-                throw new Exception($"User with name {userSignUp.Username} already exists.");
             
             var newUser = new UserModel()
             {
-                Username = userSignUp.Username, StudentNumber = userSignUp.StudentNumber,
-                Password = userSignUp.Password, Name = currentStudent.FullName,
-                IsDormResident = currentStudent.DormPassNumber != "OO 00000000"
+                StudentNumber = userSignUp.StudentNumber,
+                Password = userSignUp.Password,
+                Name = currentStudent.FullName,
+                IsDormResident = controller.GetDormResident(currentStudent.FullName) != null
             };
             
-            UserConstants.Users.Add(newUser);
+            controller.AddNewUser(newUser);
             return newUser;
-        }
-
-        private StudentModel FindStudent(string number)
-        {
-            var currentStudent = StudentConstants.Students.FirstOrDefault(o => o.Number == number);
-
-            if (currentStudent != null)
-            {
-                return currentStudent;
-            }
-
-            return null;
         }
 
         private string GenerateToken(UserModel user)
@@ -81,7 +68,6 @@ namespace E_Student.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Username),
                 new Claim(ClaimTypes.SerialNumber, user.StudentNumber),
                 new Claim(ClaimTypes.GivenName, user.Name),
                 new Claim(ClaimTypes.Role, user.IsDormResident ? "Dorm resident" : "Not dorm resident")
