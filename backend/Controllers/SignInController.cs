@@ -70,19 +70,6 @@ namespace E_Student.Controllers
             return null;
         }
 
-        private StudentModel FindStudent(UserModel user)
-        {
-            var currentStudent = StudentConstants.Students.FirstOrDefault(o =>
-                o.Number == user.StudentNumber);
-
-            if (currentStudent != null)
-            {
-                return currentStudent;
-            }
-
-            return null;
-        }
-
         private string GenerateToken(UserModel user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));

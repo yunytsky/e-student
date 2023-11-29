@@ -19,6 +19,11 @@ public class DBController
                     _instance = new DBController();
         return _instance;
     }
+
+    public void AddNewUser(UserModel newUser)
+    {
+        UserConstants.Users.Add(newUser);
+    }
     
     public UserModel GetUser(string number)
     {

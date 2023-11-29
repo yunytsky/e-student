@@ -57,7 +57,7 @@ namespace E_Student.Controllers
                 IsDormResident = controller.GetDormResident(currentStudent.FullName) != null
             };
             
-            UserConstants.Users.Add(newUser);
+            controller.AddNewUser(newUser);
             return newUser;
         }
 
