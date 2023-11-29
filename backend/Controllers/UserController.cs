@@ -14,14 +14,20 @@ namespace E_Student.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        DBController controller = DBController.GetInstance();
+        
         [HttpGet("student-profile")]
         [Authorize]
         public IActionResult StudentProfileEndpoint()
         {
-            var currentUser = GetCurrentUser();
-            if (currentUser != null)
+            var number = (HttpContext.User.Identity as ClaimsIdentity).Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value;
+            
+            var currentStudent = controller.GetStudent(number);
+            
+            if (currentStudent != null)
             {
-                return Ok($"Here will be all the necessary information about student.\n Name: {currentUser.Name}, number: {currentUser.StudentNumber}");    
+                return Ok(currentStudent.GetFullInfo());
             }
 
             return NotFound("Something went wrong.");
@@ -31,12 +37,15 @@ namespace E_Student.Controllers
         [Authorize(Roles = "Dorm resident")]
         public IActionResult DormProfileEndpoint()
         {
-            var currentUser = GetCurrentUser();
-            var currentStudent = GetCurrentStudent();
-            var currentDormResident = GetCurrentDormResident();
-            if (currentUser != null)
+            var name = (HttpContext.User.Identity as ClaimsIdentity).Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.GivenName)?.Value;
+            
+            var currentDormResident = controller.GetDormResident(name);
+            
+            if (currentDormResident != null)
             {
-                return Ok($"Here will be all the necessary information about dorm resident\n Number: {currentUser.Name}, number: {currentUser.StudentNumber}");
+                return Ok($"Here will be all the necessary information about dorm resident\n" +
+                          $" Name: {currentDormResident.FullName}, number: {currentDormResident.DormPassNumber}");
             }
 
             return NotFound("Something went wrong.");
@@ -46,51 +55,6 @@ namespace E_Student.Controllers
         public IActionResult PublicEndpoint()
         {
             return Ok("Omg hiiiii :333");
-        }
-        
-        private UserModel GetCurrentUser()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-
-            if (identity != null)
-            {
-                var userClaims = identity.Claims;
-                var currentUser = UserConstants.Users.FirstOrDefault(o =>
-                    o.StudentNumber == userClaims.FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value);
-                return currentUser;
-            }
-
-            return null;
-        }
-        
-        private StudentModel GetCurrentStudent()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-
-            if (identity != null)
-            {
-                var userClaims = identity.Claims;
-                var currentStudent = StudentConstants.Students.FirstOrDefault(o =>
-                    o.Number == userClaims.FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value);
-                return currentStudent;
-            }
-
-            return null;
-        }
-        
-        private UserModel GetCurrentDormResident()
-        {
-            var identity = HttpContext.User.Identity as ClaimsIdentity;
-
-            if (identity != null)
-            {
-                var userClaims = identity.Claims;
-                var currentUser = UserConstants.Users.FirstOrDefault(o =>
-                    o.StudentNumber == userClaims.FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value);
-                return currentUser;
-            }
-
-            return null;
         }
     }
 }

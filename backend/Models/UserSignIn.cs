@@ -2,6 +2,6 @@
 
 public class UserSignIn
 {
-    public string InputString { get; set; }
+    public string StudentNumber { get; set; }
     public string Password { get; set; }
 }

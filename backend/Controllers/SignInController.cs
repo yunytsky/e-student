@@ -19,6 +19,7 @@ namespace E_Student.Controllers
     public class SignInController : ControllerBase
     {
         private IConfiguration _config;
+        DBController controller = DBController.GetInstance();
 
         public SignInController(IConfiguration config)
         {
@@ -29,20 +30,28 @@ namespace E_Student.Controllers
         [HttpPost]
         public IActionResult SignIn([FromBody] UserSignIn userSignIn)
         {
-            var user = Authenticate(userSignIn);
+            UserModel user;
+            try
+            {
+                user = Authenticate(userSignIn);
+            }
+            catch (Exception e)
+            {
+                if (e.Message == "Object reference not set to an instance of an object.")
+                    return NotFound("Invalid student number");
+                return NotFound(e.Message);
+            }
 
             if (user != null)
             {
-                var student = FindStudent(user);
-                if (student != null)
+                var currentStudent = controller.GetStudent(userSignIn.StudentNumber);
+                if (currentStudent != null)
                 {
-                    user.Name = student.FullName;
-                    user.IsDormResident = student.DormNumber != "";
+                    user.Name = currentStudent.FullName;
+                    user.IsDormResident = controller.GetDormResident(currentStudent.FullName) != null;
                     var token = GenerateToken(user);
                     return Ok(token);
                 }
-
-                return Ok("Студента нема?");
             }
 
             return NotFound("User not found");
@@ -50,10 +59,11 @@ namespace E_Student.Controllers
 
         private UserModel Authenticate(UserSignIn userSignIn)
         {
-            var currentUser = UserConstants.Users.FirstOrDefault(o => 
-                (o.Username == userSignIn.InputString ||
-                 o.StudentNumber == userSignIn.InputString) && o.Password == userSignIn.Password);
-
+            var currentUser = controller.GetUser(userSignIn.StudentNumber);
+            
+            if (currentUser.Password != userSignIn.Password)
+                throw new Exception("Password doesn't match");
+            
             if (currentUser != null)
                 return currentUser;
 
@@ -80,7 +90,6 @@ namespace E_Student.Controllers
 
             var claims = new[]
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Username),
                 new Claim(ClaimTypes.SerialNumber, user.StudentNumber),
                 new Claim(ClaimTypes.GivenName, user.Name),
                 new Claim(ClaimTypes.Role, user.IsDormResident ? "Dorm resident" : "Not dorm resident")

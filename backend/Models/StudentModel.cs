@@ -2,13 +2,11 @@
 
 public class StudentModel
 {
-    public string Number { get; }
-    public string FullName { get; }
-    public string Faculty { get; }
-
-    public string DormNumber { get; set; }
-    public string DormPassNumber { get; set; }
-    public string BlockNumber { get; set; }
+    public string Number { get; set; }
+    public string FullName { get; set; }
+    public string Faculty { get; set; }
+    public string Group { get; set; }
+    public string Course { get; set; }
 
     public StudentModel()
     {
@@ -23,12 +21,17 @@ public class StudentModel
         Faculty = faculty;
     }
     
-    public StudentModel(string number, string faculty, string name, string dormPassNumber,
-        string dormNumber, string blockNumber) : this(number, faculty)
+    public StudentModel(string number, string faculty, string name) : this(number, faculty)
     {
         FullName = name;
-        DormPassNumber = dormPassNumber;
-        DormNumber = dormNumber;
-        BlockNumber = blockNumber;
+    }
+
+    public string GetFullInfo()
+    {
+        return $"Студентський квиток: {Number}\n" +
+               $"ПІБ: {FullName}\n" +
+               $"Факультет: {Faculty}\n" +
+               $"Група: {Group}\n" +
+               $"Курс: {Course}";
     }
 }
