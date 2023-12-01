@@ -73,7 +73,7 @@ namespace E_Student.Controllers
                 new Claim(ClaimTypes.Role, user.IsDormResident ? "Dorm resident" : "Not dorm resident")
             };
             var token = new JwtSecurityToken(_config["Jwt:Issuer"], _config["Jwt:Audience"], claims,
-                expires: DateTime.Now.AddMinutes(10), signingCredentials: credentials);
+                expires: DateTime.Now.AddDays(1), signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
