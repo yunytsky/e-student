@@ -25,6 +25,14 @@
         }
         
     }
+    &:disabled{
+        background-color: $black-10;
+        border: 1px solid $black-10;
+        color: $black-25;
+        a{
+            color: $black-25;
+        }
+    }
  }
 
  .button-empty{
@@ -53,4 +61,14 @@
         }
         
     }
+
+    &:disabled{
+        background-color: $black-10;
+        border: 1px solid $black-10;
+        color: $black-25;
+        a{
+            color: $black-25;
+        }
+    }
+
  }

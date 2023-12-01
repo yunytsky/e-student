@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Header = (props) => {
+    const user = useSelector(state => state.auth.value.user);
  return(
     <header className="header app">
         <div className="header-left">
@@ -11,7 +13,7 @@ const Header = (props) => {
         </div>
         <div className="header-right">
             <Link className="header-switch">{props.type === "student" ? "Кабінет мешканця" : (props.type === "dweller" ? "Кабінет студента" : "") }</Link>
-            <button className="header-user">Прізвище Ім'я</button>
+            <button className="header-user">{user.FullName}</button>
         </div>
     </header>
  );
