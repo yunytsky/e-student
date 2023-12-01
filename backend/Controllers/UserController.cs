@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Text.Json;
 using System.Threading.Tasks;
 using E_Student.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -10,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace E_Student.Controllers
 {
-    [Route("")]
+    [Route("user/")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -27,7 +28,7 @@ namespace E_Student.Controllers
             
             if (currentStudent != null)
             {
-                return Ok(currentStudent.GetFullInfo());
+                return Ok(JsonSerializer.Serialize(new StudentInfo(currentStudent)));
             }
 
             return NotFound("Something went wrong.");
@@ -44,7 +45,7 @@ namespace E_Student.Controllers
             
             if (currentDormResident != null)
             {
-                return Ok(currentDormResident.GetFullInfo());
+                return Ok(JsonSerializer.Serialize(new DormResidentInfo(currentDormResident)));
             }
 
             return NotFound("Something went wrong.");
