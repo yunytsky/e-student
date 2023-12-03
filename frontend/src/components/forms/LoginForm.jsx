@@ -5,19 +5,25 @@ import { signinSchema } from "../../schemas";
 
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../../features/auth";
 
 const LoginForm = () => {
   const [submitError, setSubmitError] = useState(false);
+  const auth = useSelector(state => state.auth.value)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onSubmit = async (values, actions) => {
     const data = {studentNumber: values.studentCard, password: values.password};
-    dispatch(signIn(data));
-    actions.resetForm();
-    navigate("/app/student/cabinet");
+    dispatch(signIn(data)).then((data) => {
+      console.log(data)
+      actions.resetForm();
+      navigate("/app/student/cabinet");
+    }).catch((err) => {
+      console.log("ERR CATCHED", err)
+    })
+
   };
 
   //Password toggler

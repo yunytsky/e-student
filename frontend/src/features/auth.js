@@ -19,7 +19,7 @@ export const signUp = createAsyncThunk(
             { studentNumber: studentNumber, password: password },
             config
           );
-          console.log(res)
+
         } catch (err) {
             if(err.response && err.response.data.message){
                 return rejectWithValue(err.response.data.message)
@@ -45,12 +45,12 @@ export const signIn = createAsyncThunk(
           { studentNumber: studentNumber, password: password },
           config
         );
-         const token = res.data;
+
+        const token = res.data;
          localStorage.setItem("token", token);
          return token;
 
       } catch (err) {
-        console.log(err)
           if(err.response && err.response.data.message){
               return rejectWithValue(err.response.data.message)
           }else{
@@ -64,24 +64,37 @@ const token = localStorage.getItem("token") ? localStorage.getItem("token") : nu
 
 const initialStateValue = {
     user: null,
-    token: token
+    token: token,
+    error: null,
+    pending: false,
+    fulfilled: false
 }
 
 const authSlice = createSlice({
     name: "auth",
     initialState: {value: initialStateValue},
     reducers: {
+      logout: (state) => {
+        localStorage.removeItem("token");
+        state.user = null;
+        state.token = null;
+      },
       setUser: (state, {payload}) => {
         state.value.user = payload;
-      }
+      },
     },
     extraReducers: {
+      [signIn.pending]: (state) => {
+      },
       [signIn.fulfilled] : (state, {payload}) => {
-        console.log(state.value.token, payload)
         state.value.token = payload;
+        //state.value.user = ... 
+      },
+      [signIn.rejected] : (state, {payload}) => {
+
       }
     }
 })
 
-export const {setUser} = authSlice.actions;
+export const {setUser, logout} = authSlice.actions;
 export default authSlice.reducer;

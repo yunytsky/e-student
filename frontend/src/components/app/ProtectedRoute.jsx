@@ -15,10 +15,11 @@ const ProtectedRoute = () => {
     })
 
     useEffect(() => {
-        console.log(data)
-        if (data && data.status !== "pending") {
+        if (data.data) {
             dispatch(setUser(data.data));
             setIsLoading(false)
+        }else if(data.status === "rejected"){
+            //dispatch logout? 
         }
     }, [data]);
 

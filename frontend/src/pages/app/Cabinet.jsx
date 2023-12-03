@@ -48,17 +48,14 @@ const Cabinet = (props) => {
         }
     }, [date])
 
-    useEffect(() => {
-      console.log(user)
-    }, [user])
 
  return (
    <>
      <div className="cabinet">
-       <h3>{user.FullName}</h3>
+       <h3>{user.fullName}</h3>
        <div className="cabinet-student-info">
-         <p>Студентський квиток: {user.StudentNumber}</p>
-         <p>{user.Faculty}</p>
+         <p>Студентський квиток: {user.studentNumber}</p>
+         <p>{user.faculty}</p>
        </div>
 
        {props.type === "student" ? (

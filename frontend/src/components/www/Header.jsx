@@ -1,6 +1,17 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = (props) => {
+    const user = useSelector(state => state.auth.value.user);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+      if(user){
+        // navigate("/app/student/cabinet");
+      }
+    }, [user])
+
     return (
       <header className="header www">
         <Link to="/" className="logo">

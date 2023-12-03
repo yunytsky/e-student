@@ -6,7 +6,7 @@ export const authApi = createApi({
         baseUrl: "http://localhost:7150",
         prepareHeaders: (headers, {getState}) => {
             const token = getState().auth.value.token;
-            console.log(token)
+            console.log("user fetch in protected route", token, localStorage.getItem("token"))
             if(token){
                 headers.set("authorization", `Bearer ${token}`);
                 return headers;
@@ -17,7 +17,7 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         getUserInfo: builder.query({
             query: () => ({
-                url: "/student-profile",
+                url: "/user/student-profile",
                 method: "GET",
             })
         })
