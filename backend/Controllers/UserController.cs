@@ -21,6 +21,7 @@ namespace E_Student.Controllers
         [Authorize]
         public IActionResult StudentProfileEndpoint()
         {
+            
             var number = (HttpContext.User.Identity as ClaimsIdentity).Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value;
             
