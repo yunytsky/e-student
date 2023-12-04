@@ -1,0 +1,49 @@
+﻿@E-Student_HostAddress = http://localhost:7150
+
+
+###
+
+GET {{E-Student_HostAddress}}/api/student/{id:length(24)}?id=1221
+
+###
+
+GET {{E-Student_HostAddress}}/api/student
+
+###
+
+GET {{E-Student_HostAddress}}/api/student
+
+###
+
+GET {{E-Student_HostAddress}}/user/public
+
+###
+
+GET {{E-Student_HostAddress}}/user/public
+
+###
+
+GET {{E-Student_HostAddress}}/user/public
+
+###
+
+POST {{E-Student_HostAddress}}/sign-in
+Content-Type: application/json
+
+{
+  "number":"1221"//UserSignIn
+}
+
+###
+
+GET {{E-Student_HostAddress}}/api/student
+
+###
+
+GET {{E-Student_HostAddress}}/user/student-profile
+
+###
+
+GET {{E-Student_HostAddress}}/user/student-profile
+
+###
