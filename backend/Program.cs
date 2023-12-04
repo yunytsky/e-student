@@ -1,10 +1,25 @@
 using System.Text;
+using E_Student.Services;
+using E_Student.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.Configure<StudentsDatabaseSetings>(
+    builder.Configuration.GetSection("StudentDataBase"));
+builder.Services.AddSingleton<StudentService>();
+
+builder.Services.Configure<UserDatabaseSettings>(
+    builder.Configuration.GetSection("UserDataBase"));
+builder.Services.AddSingleton<UserService>();
+
+builder.Services.Configure<DormResidentSettings>(
+    builder.Configuration.GetSection("DormResidentDataBase"));
+builder.Services.AddSingleton<DormResidentService>();
+
+
 
 builder.Services.AddCors(options =>
 {
@@ -33,6 +48,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 builder.Services.AddControllers();
+
+
 
 var app = builder.Build();
 
