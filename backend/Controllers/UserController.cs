@@ -102,6 +102,28 @@ namespace E_Student.Controllers
 
             return NotFound("Такого мешканця гуртожитку не існує.");
         }
+        
+        [HttpPost("user/change-password")]
+        [Authorize]
+        public IActionResult ChangePasswordEndpoint([FromBody] UserChangePassword userChangePassword)
+        {
+            var number = (HttpContext.User.Identity as ClaimsIdentity).Claims
+                .FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value;
+            
+            var currentUser = controller.GetUser(number);
+            
+            if (currentUser != null)
+            {
+                if (currentUser.Password != userChangePassword.oldPassword)
+                    return BadRequest("Введено неправильний старий пароль.");
+                
+                controller.UpdateUserPassword(currentUser.StudentNumber, userChangePassword.newPassword);
+                return Ok(
+                    $"Пароль успішно змінено на {controller.GetUser(number).Password}.");
+            }
+
+            return NotFound("Такого студента не існує.");
+        }
 
         private UserModel CreateUser(UserSignUp userSignUp)
         {

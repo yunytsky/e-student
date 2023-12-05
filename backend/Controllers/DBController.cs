@@ -59,7 +59,21 @@ public class DBController : Controller
         UserConstants.Users.Add(newUser);
         _userService.Add(newUser);
     }
-    
+    public void UpdateUserPassword(string number, string newPassword)
+    {
+        var currentUser = UserConstants.Users.FirstOrDefault(o => o.StudentNumber == number);
+
+        var newUser = new UserModel()
+        {
+            StudentNumber = currentUser.StudentNumber, Password = newPassword,
+            Name = currentUser.Name, IsDormResident = currentUser.IsDormResident,
+            Id = currentUser.Id
+        };
+
+        UserConstants.Users.Remove(currentUser);
+        UserConstants.Users.Add(newUser);
+        _userService.Update(currentUser.StudentNumber, newUser);
+    }
     public UserModel GetUser(string number)
     {
         var currentUser = UserConstants.Users.FirstOrDefault(o => o.StudentNumber == number);
