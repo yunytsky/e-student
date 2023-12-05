@@ -7,6 +7,10 @@ public class DormResidentInfo
     public string dormAddress { get; }
     public string room { get; }
     public string account { get; }
+    public string balance { get; }
+    public List<AccountTransactionsModel> accountTransactions { get; }
+    public DateTime issued { get; }
+    public DateTime expires { get; }
 
     public DormResidentInfo(DormResidentModel dormResidentModel)
     {
@@ -15,5 +19,9 @@ public class DormResidentInfo
         dormAddress = dormResidentModel.DormAddress;
         room = dormResidentModel.DormRoom;
         account = dormResidentModel.DormAccount;
+        balance = dormResidentModel.DormAccountBalance;
+        accountTransactions = dormResidentModel.DormAccountTransactions;
+        issued = dormResidentModel.DormPassIssued;
+        expires = dormResidentModel.DormPassExpires;
     }
 }
