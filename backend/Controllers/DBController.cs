@@ -1,11 +1,8 @@
-﻿using System.Security.Claims;
-using E_Student.Models;
+﻿using E_Student.Models;
 using E_Student.Services;
 using E_Student.Settings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson;
-using MongoDB.Driver;
 
 namespace E_Student.Controllers;
 
@@ -25,16 +22,6 @@ public class DBController : Controller
     public static DBController GetInstance()
     {
         var connectionString = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
-        /*var databaseName_student = "Student";
-        var collectionName_student = "E-Student";
-
-        var connectionString_user = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
-        var databaseName_user = "User";
-        var collectionName_user = "User";
-
-        var connectionString_dorm = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
-        var databaseName_dorm = "DormResidents";
-        var collectionName_dorm = "DormResidents";*/
 
         var studentsDatabaseSettings = Options.Create(new StudentsDatabaseSetings
         {

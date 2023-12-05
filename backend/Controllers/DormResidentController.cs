@@ -1,6 +1,5 @@
 ﻿using E_Student.Models;
 using E_Student.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Student.Controllers
@@ -40,34 +39,5 @@ namespace E_Student.Controllers
                 return NotFound();
             return Ok(dormResident);
         }
-        
-        /*public async Task<IActionResult> Add(DormResidentModel dormResident)
-        {
-            await _dormResident.Create(dormResident);
-            return CreatedAtAction(nameof(Get), new { id = dormResident.DormPassNumber }, dormResident);
-
-        }
-       
-        public async Task<IActionResult> Update(string id, DormResidentModel dormResident)
-        {
-            var existingstudent = await _dormResident.Get(id);
-            if (existingstudent is null)
-                return BadRequest();
-            dormResident.DormPassNumber = existingstudent.DormPassNumber;
-            await _dormResident.Update(id, dormResident);
-
-            return NoContent();
-
-        }
-      
-        public async Task<IActionResult> Delete(string id)
-        {
-            var existingdormres = await _dormResident.Get(id);
-            if (existingdormres is null)
-                return BadRequest();
-            await _dormResident.Delete(id);
-
-            return NoContent();
-        }*/
     }
 }

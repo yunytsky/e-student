@@ -26,11 +26,5 @@ namespace E_Student.Services
 
         public async Task Create(UserModel student) =>
             await _user.InsertOneAsync(student);
-
-        /*public async Task Update(string id, UserModel student) =>
-            await _user.ReplaceOneAsync(s => s.StudentNumber == id, student);
-
-        public async Task Delete(string id) =>
-            await _user.DeleteOneAsync(s => s.StudentNumber == id);*/
     }
 }

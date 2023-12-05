@@ -1,11 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Driver;
-using System.Text;
-using System.Text.Json.Serialization;
 
 namespace E_Student.Models;
-
 
 public class StudentModel
 {
