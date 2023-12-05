@@ -15,7 +15,7 @@ public class DormResidentModel
     [BsonElement("dormPassNumber")]
     public string DormPassNumber { get; set; }
 
-    [BsonElement("dormAdress")]
+    [BsonElement("dormAddress")]
     public string DormAddress { get; set; }
 
     [BsonElement("dormRoom")]
@@ -24,12 +24,9 @@ public class DormResidentModel
     [BsonElement("dormAccount")]
     public string DormAccount { get; set; }
     
-    public string GetFullInfo()
-    {
-        return $"Номер перепустки: {DormPassNumber}\n" +
-               $"ПІБ: {FullName}\n" +
-               $"Кімната: {DormRoom}\n" +
-               $"Адреса гуртожитку: {DormAddress}\n" +
-               $"Рахунок мешканця: {DormAccount}";
-    }
+    [BsonElement("dormAccountBalance")]
+    public string DormAccountBalance { get; set; }
+    
+    [BsonElement("dormAccountTransactions")]
+    public List<AccountTransactionsModel> DormAccountTransactions { get; set; }
 }

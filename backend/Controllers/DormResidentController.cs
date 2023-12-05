@@ -9,37 +9,29 @@ namespace E_Student.Controllers
     public class DormResidentController : Controller
     {
         private readonly DormResidentService _dormResident;
-        
 
         public DormResidentController(DormResidentService dormResident) {
             _dormResident = dormResident;
-            RenewLocalDatabase();
+            RenewLocalDatabase().GetAwaiter().GetResult();
          }
 
-        public async void RenewLocalDatabase()
+        public async Task RenewLocalDatabase()
         {
-            var AllDormResidents = await _dormResident.GetAll();
-            //StudentConstants.Students.Add(AllStudents);
-            foreach (var dormResident in AllDormResidents)
+            var allDormResidents = await _dormResident.GetAll();
+            foreach (var dormResident in allDormResidents)
             {
                 if(!DormResidentConstants.DormResidents.Contains(dormResident))
-                DormResidentConstants.DormResidents.Add(dormResident);
+                    DormResidentConstants.DormResidents.Add(dormResident);
             }
-
         }
-
-        // GET: StudentController
        
         public async Task<IActionResult> Get()
         {
-            var AllDormResidents = await _dormResident.GetAll();
-            if (AllDormResidents.Any())
-                return Ok(AllDormResidents);
+            var allDormResidents = await _dormResident.GetAll();
+            if (allDormResidents.Any())
+                return Ok(allDormResidents);
             return NotFound();
-
         }
-
-        // GET: StudentController/Details/5
       
         public async Task<IActionResult> Get(string id)
         {
@@ -47,19 +39,14 @@ namespace E_Student.Controllers
             if (dormResident is null)
                 return NotFound();
             return Ok(dormResident);
-
         }
-
-
-        // POST: StudentController/Create
         
-        public async Task<IActionResult> Add(DormResidentModel dormResident)
+        /*public async Task<IActionResult> Add(DormResidentModel dormResident)
         {
             await _dormResident.Create(dormResident);
             return CreatedAtAction(nameof(Get), new { id = dormResident.DormPassNumber }, dormResident);
 
         }
-
        
         public async Task<IActionResult> Update(string id, DormResidentModel dormResident)
         {
@@ -72,9 +59,6 @@ namespace E_Student.Controllers
             return NoContent();
 
         }
-
-
-        // GET: StudentController/Delete/5
       
         public async Task<IActionResult> Delete(string id)
         {
@@ -84,8 +68,6 @@ namespace E_Student.Controllers
             await _dormResident.Delete(id);
 
             return NoContent();
-        }
-
-
+        }*/
     }
 }

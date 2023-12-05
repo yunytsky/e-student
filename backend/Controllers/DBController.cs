@@ -14,7 +14,7 @@ public class DBController : Controller
 {
     private DBController() { }
 
-    private static StudentController _studentService;
+    private static StudentDatabaseController _studentService;
     private static UserDatabaseController _userService;
     private static DormResidentController _dormResidentController;
 
@@ -24,42 +24,42 @@ public class DBController : Controller
     
     public static DBController GetInstance()
     {
-        var connectionString_student = "mongodb+srv://chalchinskiy:PxSWjNdCITRmMlSi@cluster0.0ckqst8.mongodb.net/";
-        var databaseName_student = "Student";
+        var connectionString = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
+        /*var databaseName_student = "Student";
         var collectionName_student = "E-Student";
 
-        var connectionString_user = "mongodb+srv://chalchinskiy:PxSWjNdCITRmMlSi@cluster0.0ckqst8.mongodb.net/";
+        var connectionString_user = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
         var databaseName_user = "User";
         var collectionName_user = "User";
 
-        var connectionString_dorm = "mongodb+srv://chalchinskiy:PxSWjNdCITRmMlSi@cluster0.0ckqst8.mongodb.net/";
+        var connectionString_dorm = "mongodb+srv://admin:1NUwYyvFwIo@cluster0.hrf9vls.mongodb.net/";
         var databaseName_dorm = "DormResidents";
-        var collectionName_dorm = "DormResidents";
+        var collectionName_dorm = "DormResidents";*/
 
         var studentsDatabaseSettings = Options.Create(new StudentsDatabaseSetings
         {
-            ConnectionString = connectionString_student,
-            DatabaseName = databaseName_student,
-            CollectionName = collectionName_student
+            ConnectionString = connectionString,
+            DatabaseName = "Student",
+            CollectionName = "E-Student"
         });
         var usersDatabaseSettings = Options.Create(new UserDatabaseSettings
         {
-            ConnectionString = connectionString_user,
-            DatabaseName = databaseName_user,
-            CollectionName = collectionName_user
+            ConnectionString = connectionString,
+            DatabaseName = "User",
+            CollectionName = "User"
         });
         var DormResidentDatabaseSettings = Options.Create(new DormResidentSettings
         {
-            ConnectionString = connectionString_dorm,
-            DatabaseName = databaseName_dorm,
-            CollectionName = collectionName_dorm
+            ConnectionString = connectionString,
+            DatabaseName = "DormResidents",
+            CollectionName = "DormResidents"
         });
         if (_instance == null)
             lock (_lock)
                 if (_instance == null)
                 {
                     _instance = new DBController();
-                    _studentService = new StudentController(new StudentService(studentsDatabaseSettings));    
+                    _studentService = new StudentDatabaseController(new StudentService(studentsDatabaseSettings));    
                     _userService = new UserDatabaseController(new UserService(usersDatabaseSettings));
                     _dormResidentController = new DormResidentController(new DormResidentService(DormResidentDatabaseSettings));
                 }
@@ -67,18 +67,14 @@ public class DBController : Controller
         return _instance;
     }
 
-   
-
     public void AddNewUser(UserModel newUser)
     {
         UserConstants.Users.Add(newUser);
         _userService.Add(newUser);
-        
     }
     
     public UserModel GetUser(string number)
     {
-        
         var currentUser = UserConstants.Users.FirstOrDefault(o => o.StudentNumber == number);
         
         if (currentUser != null)
@@ -90,9 +86,7 @@ public class DBController : Controller
     }
     public StudentModel GetStudent(string number)
     {
-        
        var currentStudent = StudentConstants.Students.FirstOrDefault(o => o.Number == number);
-       
 
         if (currentStudent != null)
         {

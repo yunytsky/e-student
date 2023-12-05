@@ -29,17 +29,14 @@ namespace E_Student.Controllers
         [HttpPost]
         public IActionResult SignUp([FromBody] UserSignUp userSignUp)
         {
-            UserModel user;
             try
             {
-                user = CreateUser(userSignUp);
-                
-                var token = GenerateToken(user);
+                var token = GenerateToken(CreateUser(userSignUp));
                 return Ok(token);
             }
             catch (Exception e)
             {
-                return NotFound(e.Message);
+                return NotFound(e);
             }
         }
 
@@ -47,7 +44,7 @@ namespace E_Student.Controllers
         {
             var currentStudent = controller.GetStudent(userSignUp.StudentNumber);
             if (currentStudent == null)
-                throw new Exception($"There is no student with number {userSignUp.StudentNumber}.");
+                throw new Exception($"Студента з номером студентського квитка {userSignUp.StudentNumber} немає.");
             
             var newUser = new UserModel()
             {

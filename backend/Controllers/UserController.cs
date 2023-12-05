@@ -21,7 +21,6 @@ namespace E_Student.Controllers
         [Authorize]
         public IActionResult StudentProfileEndpoint()
         {
-            
             var number = (HttpContext.User.Identity as ClaimsIdentity).Claims
                 .FirstOrDefault(c => c.Type == ClaimTypes.SerialNumber)?.Value;
             
@@ -32,7 +31,7 @@ namespace E_Student.Controllers
                 return Ok(JsonSerializer.Serialize(new StudentInfo(currentStudent)));
             }
 
-            return NotFound("Something went wrong.");
+            return NotFound("Такого студента не існує.");
         }
         
         [HttpGet("dorm-profile")]
@@ -49,13 +48,7 @@ namespace E_Student.Controllers
                 return Ok(JsonSerializer.Serialize(new DormResidentInfo(currentDormResident)));
             }
 
-            return NotFound("Something went wrong.");
-        }
-
-        [HttpGet("public")]
-        public IActionResult PublicEndpoint()
-        {
-            return Ok("Omg hiiiii :333");
+            return NotFound("Такого мешканця гуртожитку не існує.");
         }
     }
 }

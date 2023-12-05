@@ -25,7 +25,7 @@ namespace E_Student.Services
         public async Task<StudentModel> Get(string number) =>
             await _students.Find(s => s.Number == number).FirstOrDefaultAsync();
 
-        public async Task Create(StudentModel student) =>
+        /*public async Task Create(StudentModel student) =>
             await _students.InsertOneAsync(student);
         
 
@@ -33,6 +33,6 @@ namespace E_Student.Services
             await _students.ReplaceOneAsync(s => s.Number == id, student);
 
         public async Task Delete(string id) =>
-            await _students.DeleteOneAsync(s => s.Number == id);
+            await _students.DeleteOneAsync(s => s.Number == id);*/
     }
 }

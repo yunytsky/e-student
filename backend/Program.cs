@@ -7,19 +7,14 @@ using Microsoft.IdentityModel.Tokens;
 var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.Configure<StudentsDatabaseSetings>(
-    builder.Configuration.GetSection("StudentDataBase"));
+builder.Services.Configure<StudentsDatabaseSetings>(builder.Configuration.GetSection("StudentDataBase"));
 builder.Services.AddSingleton<StudentService>();
 
-builder.Services.Configure<UserDatabaseSettings>(
-    builder.Configuration.GetSection("UserDataBase"));
+builder.Services.Configure<UserDatabaseSettings>(builder.Configuration.GetSection("UserDataBase"));
 builder.Services.AddSingleton<UserService>();
 
-builder.Services.Configure<DormResidentSettings>(
-    builder.Configuration.GetSection("DormResidentDataBase"));
+builder.Services.Configure<DormResidentSettings>(builder.Configuration.GetSection("DormResidentDataBase"));
 builder.Services.AddSingleton<DormResidentService>();
-
-
 
 builder.Services.AddCors(options =>
 {

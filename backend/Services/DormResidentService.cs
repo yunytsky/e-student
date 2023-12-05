@@ -25,7 +25,7 @@ namespace E_Student.Services
         public async Task<DormResidentModel> Get(string number) =>
             await _dormResident.Find(s => s.DormPassNumber == number).FirstOrDefaultAsync();
 
-        public async Task Create(DormResidentModel dormResident) =>
+        /*public async Task Create(DormResidentModel dormResident) =>
             await _dormResident.InsertOneAsync(dormResident);
         
 
@@ -33,6 +33,6 @@ namespace E_Student.Services
             await _dormResident.ReplaceOneAsync(s => s.DormPassNumber == id, dormResident);
 
         public async Task Delete(string id) =>
-            await _dormResident.DeleteOneAsync(s => s.DormPassNumber == id);
+            await _dormResident.DeleteOneAsync(s => s.DormPassNumber == id);*/
     }
 }

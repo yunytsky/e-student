@@ -19,11 +19,12 @@ namespace E_Student.Controllers
     public class SignInController : ControllerBase
     {
         private IConfiguration _config;
-        DBController controller = DBController.GetInstance();
+        DBController controller;
 
         public SignInController(IConfiguration config)
         {
             _config = config;
+            controller = DBController.GetInstance();
         }
 
         [AllowAnonymous]
@@ -38,7 +39,7 @@ namespace E_Student.Controllers
             catch (Exception e)
             {
                 if (e.Message == "Object reference not set to an instance of an object.")
-                    return NotFound("Invalid student number");
+                    return NotFound("Неправильний номер студентського квитка.");
                 return NotFound(e.Message);
             }
 
@@ -47,14 +48,12 @@ namespace E_Student.Controllers
                 var currentStudent = controller.GetStudent(userSignIn.StudentNumber);
                 if (currentStudent != null)
                 {
-                    user.Name = currentStudent.FullName;
-                    user.IsDormResident = controller.GetDormResident(currentStudent.FullName) != null;
                     var token = GenerateToken(user);
                     return Ok(token);
                 }
             }
 
-            return NotFound("User not found");
+            return NotFound("Використувач не знайдений.");
         }
 
         private UserModel Authenticate(UserSignIn userSignIn)
@@ -62,7 +61,7 @@ namespace E_Student.Controllers
             var currentUser = controller.GetUser(userSignIn.StudentNumber);
             
             if (currentUser.Password != userSignIn.Password)
-                throw new Exception("Password doesn't match");
+                throw new Exception("Неправильний пароль.");
             
             if (currentUser != null)
                 return currentUser;
