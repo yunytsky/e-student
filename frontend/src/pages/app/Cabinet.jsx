@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import Table from "../../components/app/Table";
+import { useSelector } from "react-redux";
 
 const Cabinet = (props) => {
+    const user = useSelector(state => state.auth.value.user);
     const [date, setDate] = useState("");
     const [data, setData] = useState([]);
     const [columns, setColumns] = useState([]);
+    
 
     useEffect(() => {
         if(props.type === "dweller"){
@@ -45,15 +48,17 @@ const Cabinet = (props) => {
         }
     }, [date])
 
-    
+    useEffect(() => {
+      console.log(user)
+    }, [user])
 
  return (
    <>
      <div className="cabinet">
-       <h3>Коваль Сергій Іванович</h3>
+       <h3>{user.FullName}</h3>
        <div className="cabinet-student-info">
-         <p>Студентський квиток: СК № 00000000</p>
-         <p>Факультет комп’ютерних наук та кібернетики</p>
+         <p>Студентський квиток: {user.StudentNumber}</p>
+         <p>{user.Faculty}</p>
        </div>
 
        {props.type === "student" ? (

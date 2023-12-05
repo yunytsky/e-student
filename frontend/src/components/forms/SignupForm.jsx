@@ -3,21 +3,20 @@ import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import axios from "axios";
 import { signupSchema } from "../../schemas";
+import {useDispatch} from "react-redux";
 
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
+import { signUp } from "../../features/auth";
 
 const SignupForm = () => {  
     const [submitError, setSubmitError] = useState(false);
+    const dispatch = useDispatch();
 
     const onSubmit = async (values,actions) => {
-        console.log("Form submitted");
+        const data = {studentNumber: values.studentCard, password: values.password}
+        dispatch(signUp(data));
         actions.resetForm();
-        try{
-            //api request here
-         }catch(err){
-
-         }
     };
 
     //Password toggler
@@ -58,7 +57,7 @@ const SignupForm = () => {
         <input
           className="form-input"
           name="studentCard"
-          placeholder="AA 00 00 00 00 00"
+          placeholder="AA 00000000"
           id="studentCard"
           value={formik.values.studentCard}
           onChange={formik.handleChange}
@@ -176,6 +175,7 @@ const SignupForm = () => {
             type="checkbox"
             name="acceptTos"
             id="acceptTos"
+            checked={formik.values.acceptTos}
             value={formik.values.acceptTos}
             onChange={formik.handleChange}
           />
@@ -190,7 +190,7 @@ const SignupForm = () => {
         )}
 
         {/* Submit button */}
-        <button type="submit" className="form-submit-button button-filled">
+        <button type="submit" className="form-submit-button button-filled" disabled={formik.isSubmitting}>
           Зареєструватись
         </button>
 

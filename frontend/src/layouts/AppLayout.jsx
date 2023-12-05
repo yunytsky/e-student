@@ -2,6 +2,7 @@ import Sidebar from "../components/app/Sidebar";
 import Header from "../components/app/Header";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import {useGetUserInfoQuery} from "../services/authService";
 
 import cabinetIcon from "../assets/person.svg";
 import scheduleIcon from "../assets/clock.svg";
@@ -9,9 +10,11 @@ import newsIcon from "../assets/paper.svg";
 import chatIcon from "../assets/chat.svg";
 import permitIcon from "../assets/paper.svg";
 import documentsIcon from "../assets/paper-clip.svg";
+import { useSelector } from "react-redux";
 
 const AppLayout = (props) => {
   const [pages, setPages] = useState([]);
+  const user = useSelector(state => state.auth.value.user);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -34,8 +37,7 @@ const AppLayout = (props) => {
         ]);
   }, []);
 
-
-  //Protect layout
+  //Redirect to the main page
   useEffect(() => {
     if(location.pathname === "/app/dweller"){
       navigate("/app/dweller/cabinet");

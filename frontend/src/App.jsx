@@ -11,6 +11,7 @@ import Documents from "./pages/app/Documents"
 import Permit from "./pages/app/Permit"
 import StudentSchedule from "./pages/app/StudentSchedule"
 import DwellerSchedule from "./pages/app/DwellerSchedule"
+import ProtectedRoute from "./components/app/ProtectedRoute"
 
 import AppLayout from "./layouts/AppLayout"
 
@@ -21,7 +22,7 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login/>}/>
       <Route path="signup" element={<Signup/>}/>
 
-      <Route path="app">
+      <Route path="app" element={<ProtectedRoute/>}>
 
       <Route path="student" element={<AppLayout type="student"/>}>
         <Route path="cabinet" element={<Cabinet type="student"/>}/>

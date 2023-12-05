@@ -1,21 +1,23 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import axios from "axios";
-import { loginSchema } from "../../schemas";
+import { signinSchema } from "../../schemas";
 
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../features/auth";
 
 const LoginForm = () => {
   const [submitError, setSubmitError] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values, actions) => {
-    console.log("Form submitted");
+    const data = {studentNumber: values.studentCard, password: values.password};
+    dispatch(signIn(data));
     actions.resetForm();
-    try {
-      //api request here
-    } catch (err) {}
+    navigate("/app/student/cabinet");
   };
 
   //Password toggler
@@ -33,7 +35,7 @@ const LoginForm = () => {
       studentCard: "",
       password: "",
     },
-    validationSchema: loginSchema,
+    validationSchema: signinSchema,
     onSubmit: onSubmit,
   });
 
@@ -45,7 +47,7 @@ const LoginForm = () => {
       </label>
       <input
         className="form-input"
-        placeholder="AA 00 00 00 00 00"
+        placeholder="AA 00000000"
         name="studentCard"
         id="studentCard"
         value={formik.values.studentCard}
@@ -90,7 +92,7 @@ const LoginForm = () => {
         Забули пароль?
       </Link>
 
-      <button type="submit" className="form-submit-button button-filled">
+      <button type="submit" className="form-submit-button button-filled" disabled={formik.isSubmitting}>
         Увійти
       </button>
 
