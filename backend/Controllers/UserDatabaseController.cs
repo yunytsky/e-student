@@ -1,5 +1,6 @@
 ﻿using E_Student.Models;
 using E_Student.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Student.Controllers
@@ -32,9 +33,9 @@ namespace E_Student.Controllers
             return NotFound();
         }
        
-        public async Task<IActionResult> Get(string id)
+        public async Task<IActionResult> Get(string number)
         {
-            var student = await _user.Get(id);
+            var student = await _user.Get(number);
             if (student is null)
                 return NotFound();
             return Ok(student);
@@ -44,6 +45,17 @@ namespace E_Student.Controllers
         {
             await _user.Create(user);
             return CreatedAtAction(nameof(Get), new { id = user.StudentNumber }, user);
+        }
+        
+        public async Task<IActionResult> Update(string id, UserModel user)
+        {
+            var existingUser = await _user.Get(id);
+            if (existingUser is null)
+                return BadRequest();
+            user.StudentNumber = existingUser.StudentNumber;
+            await _user.Update(id, user);
+
+            return NoContent();
         }
     }
 }

@@ -29,4 +29,8 @@ public class DormResidentModel
     
     [BsonElement("dormAccountTransactions")]
     public List<AccountTransactionsModel> DormAccountTransactions { get; set; }
+    [BsonElement("dormPassIssued")]
+    public DateTime DormPassIssued { get; set; }
+    [BsonElement("dormPassExpires")]
+    public DateTime DormPassExpires { get; set; }
 }

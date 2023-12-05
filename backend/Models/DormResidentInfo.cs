@@ -9,6 +9,8 @@ public class DormResidentInfo
     public string account { get; }
     public string balance { get; }
     public List<AccountTransactionsModel> accountTransactions { get; }
+    public DateTime issued { get; }
+    public DateTime expires { get; }
 
     public DormResidentInfo(DormResidentModel dormResidentModel)
     {
@@ -19,5 +21,7 @@ public class DormResidentInfo
         account = dormResidentModel.DormAccount;
         balance = dormResidentModel.DormAccountBalance;
         accountTransactions = dormResidentModel.DormAccountTransactions;
+        issued = dormResidentModel.DormPassIssued;
+        expires = dormResidentModel.DormPassExpires;
     }
 }
