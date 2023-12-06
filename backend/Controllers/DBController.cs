@@ -14,6 +14,7 @@ public class DBController : Controller
     private static StudentDatabaseController _studentService;
     private static UserDatabaseController _userService;
     private static DormResidentController _dormResidentController;
+    private static DormInspectionsController _dormInspectionsController;
 
     private static DBController _instance;
     
@@ -41,6 +42,12 @@ public class DBController : Controller
             DatabaseName = "DormResidents",
             CollectionName = "DormResidents"
         });
+        var DormInspectionsDatabaseSettings = Options.Create(new DormInspectionsSettings
+        {
+            ConnectionString = connectionString,
+            DatabaseName = "DormInspections",
+            CollectionName = "DormInspections"
+        });
         if (_instance == null)
             lock (_lock)
                 if (_instance == null)
@@ -49,6 +56,7 @@ public class DBController : Controller
                     _studentService = new StudentDatabaseController(new StudentService(studentsDatabaseSettings));    
                     _userService = new UserDatabaseController(new UserService(usersDatabaseSettings));
                     _dormResidentController = new DormResidentController(new DormResidentService(DormResidentDatabaseSettings));
+                    _dormInspectionsController = new DormInspectionsController(new DormInspectionsService(DormInspectionsDatabaseSettings));
                 }
 
         return _instance;
@@ -106,5 +114,10 @@ public class DBController : Controller
         }
 
         return null;
+    }
+
+    public List<DormInspectionsModel> GetAllInspections()
+    {
+        return InspectionConstants.DormInspections;
     }
 }
