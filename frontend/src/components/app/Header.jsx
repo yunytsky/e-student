@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
-import logoutIcon from "../../assets/logout.svg";
 import { doLogout } from "../../features/auth";
+
+import logo from "../../assets/logo.svg";
+import logoutIcon from "../../assets/logout.svg";
 
 const Header = (props) => {
   const auth = useSelector((state) => state.auth.value);
@@ -58,7 +59,10 @@ const Header = (props) => {
           <span></span>
           <span></span>
         </button>
-        <div className="logo">Е-студент</div>
+        <div className="logo">
+          <img src={logo}/>
+          <span>Е-студент</span>
+        </div>
       </div>
       <div className="header-right">
         <Link to={props.type === "resident" ? "/app/student/cabinet" : "/app/resident/cabinet"} className="header-switch">

@@ -51,3 +51,23 @@ export const getResidentInfo = async (token) => {
   return res.data;
 }
 
+export const getResidentSchedule = async (token) => {
+  const res = await axios.get(
+      `${API_BASE_URL}/user/dorm-inspections-schedule`,
+      {headers: {"Authorization": `Bearer ${token}`}}
+   );
+
+  return res.data;
+}
+
+export const getExamsSchedule = async (token) => {
+  const res = await axios.get(
+      `${API_BASE_URL}/user/exams-schedule`,
+      {headers: {"Authorization": `Bearer ${token}`}}
+   );
+
+  return res.data;
+}
+
+
+

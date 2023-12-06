@@ -45,17 +45,15 @@
 }
 
 .logo{
-    font-weight: 700;
-    font-size: 1.4rem;
-    user-select: none;
-    position: relative;
-    padding-left: 32px;
-    text-transform: uppercase;
-    &::before{
-        content: url("./assets/logo.svg");
-        position: absolute;
-        top: .1em;
-        left: 0;        
+    
+    span{
+        font-weight: 700;
+        font-size: 1.4rem;
+        user-select: none;
+        text-transform: uppercase;
+    }
+    img{
+        margin-right: 8px;
     }
 }
 

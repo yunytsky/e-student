@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+import logo from "../../assets/logo.svg";
+
 const Header = (props) => {
     const auth = useSelector(state => state.auth.value);
     const navigate = useNavigate();
@@ -16,7 +18,8 @@ const Header = (props) => {
     return (
       <header className="header www">
         <Link to="/" className="logo">
-          Е-студент
+          <img src={logo}/>
+          <span>Е-студент</span>
         </Link>
         <nav className="header-nav">
           <a

@@ -4,7 +4,6 @@ import { useEffect } from "react";
 
 const Permit = () => {
    const resident = useSelector((state) => state.auth.value.user_resident);
-    useEffect(()=> {console.log(resident)}, [resident])
    
    return (
       <div className="permit">

@@ -1,23 +1,33 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
+import { getResidentSchedule } from "../../api";
+import { useSelector } from "react-redux";
 
 const ResidentSchedule = () => {
-// List of dates
-  const controlDates = [
-    new Date(2023, 3, 10), // 10.04.2023
-    new Date(2023, 4, 10), // 10.05.2023
-    new Date(2023, 5, 9),  // 09.06.2023
-    new Date(2023, 6, 10), // 10.07.2023
-    new Date(2023, 7, 10), // 10.08.2023
-    new Date(2023, 8, 11), // 11.09.2023
-    new Date(2023, 9, 10), // 10.10.2023
-    new Date(2023, 10, 10),// 10.11.2023
-    new Date(2023, 11, 11),// 11.12.2023
-  ];
+  const auth = useSelector(state => state.auth.value)
+  const [controlDates, setControlDates] = useState([]);
 
   useEffect(()=> {
-    
+
+    const fetchData = async () => {
+      try{
+          const dates = [];
+          const schedule = await getResidentSchedule(auth.token);
+          console.log(schedule)
+          schedule.forEach(scheduleItem => {
+            dates.push(new Date(scheduleItem.date))
+          })
+          setControlDates(dates);
+      }catch(err){
+          //redirect to 505? 
+      }
+  }
+
+  fetchData();
+
   }, [])
+
+
 
   const tileClassName = ({ date, view }) => {
     // Check if the date is in the list of highlighted dates

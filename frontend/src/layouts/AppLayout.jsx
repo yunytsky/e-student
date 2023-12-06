@@ -15,9 +15,7 @@ const AppLayout = (props) => {
   const [pages, setPages] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const [sidebarVisible, setSidebarVisible] = useState(true);
-  const auth = useSelector(state => state.auth.value);
-  const dispatch = useDispatch();
+  const [sidebarVisible, setSidebarVisible] = useState(false);
 
   //Define which pages to load
   useEffect(() => {
@@ -30,13 +28,20 @@ const AppLayout = (props) => {
         ])
       : setPages([
           { name: "Кабінет", icon: cabinetIcon, url: "/app/resident/cabinet" },
-          { name: "Е-Перепустка", icon: permitIcon, url: "/app/resident/permit"},
+          { name: "Перепустка", icon: permitIcon, url: "/app/resident/permit"},
           { name: "Розклад", icon: scheduleIcon, url: "/app/resident/schedule" },
           { name: "Контакти", icon: phoneIcon, url: "/app/resident/contacts" },
           { name: "Документи", icon: documentsIcon, url: "/app/resident/documents" },
           { name: "Техпідтримка", icon: chatIcon, url: "/app/resident/support" },
         ]);
   }, [props.type]);
+
+  //Define if sidebar should be visible by default
+  useEffect(() => {
+    if(window.innerWidth > 768){
+      setSidebarVisible(true);
+    }
+  }, []);
 
 
   //Redirect to the main page
@@ -52,7 +57,8 @@ const AppLayout = (props) => {
     <div className="app-container">
       <Header type={props.type} setSidebarVisible={setSidebarVisible} />
       <div className="main">
-        {sidebarVisible && <Sidebar pages={pages} />}
+        {sidebarVisible && <Sidebar pages={pages} sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible} />}
+        <div className="overlay" onClick={()=>{setSidebarVisible(false)}}></div>
         <div className="content">
           <Outlet />
         </div>

@@ -33,7 +33,6 @@ const ProtectedRoute = () => {
                 const resident = await getResidentInfo(auth.token);
                 dispatch(setUserResident(resident));
                 localStorage.setItem("user_resident", JSON.stringify(resident))
-                console.log("Resident", resident)
             }catch(err){
                 navigate("/app/not-allowed");
             }

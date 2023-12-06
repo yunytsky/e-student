@@ -11,6 +11,14 @@
     display: flex;
 }
 
+.overlay{
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba($color: #000, $alpha: 0.075);
+}
 
 .content {
     padding: 16px 32px;
