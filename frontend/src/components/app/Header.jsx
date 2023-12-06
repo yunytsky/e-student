@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import logoutIcon from "../../assets/logout.svg";
-import { logout } from "../../features/auth";
+import { doLogout } from "../../features/auth";
 
 const Header = (props) => {
-  const user = useSelector((state) => state.auth.value.user);
+  const auth = useSelector((state) => state.auth.value);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +18,11 @@ const Header = (props) => {
   const toggleDropdown = () => {
     setDropdownVisible((prevVisible) => !prevVisible);
   };
+
+  //Toggle sidebar
+  const toggleSidebar = () => {
+    props.setSidebarVisible(prevVisible => !prevVisible);
+  }
 
   //Hide dropdown menu when clicked elsewhere
   useEffect(() => {
@@ -38,15 +43,17 @@ const Header = (props) => {
     };
   }, []);
 
+
   const handleLogout = () => {
-    dispatch(logout());
+    localStorage.clear();
+    dispatch(doLogout());
     navigate("/");
   }
 
   return (
     <header className="header app">
       <div className="header-left">
-        <button className="header-sidebar-button">
+        <button onClick={toggleSidebar} className="header-sidebar-button">
           <span></span>
           <span></span>
           <span></span>
@@ -54,10 +61,10 @@ const Header = (props) => {
         <div className="logo">Е-студент</div>
       </div>
       <div className="header-right">
-        <Link className="header-switch">
+        <Link to={props.type === "resident" ? "/app/student/cabinet" : "/app/resident/cabinet"} className="header-switch">
           {props.type === "student"
             ? "Кабінет мешканця"
-            : props.type === "dweller"
+            : props.type === "resident"
             ? "Кабінет студента"
             : ""}
         </Link>
@@ -66,7 +73,7 @@ const Header = (props) => {
           ref={dropdownButtonRef}
           className="header-user"
         >
-          {user.fullName}
+          {auth.user.fullName}
         </button>
         {dropdownVisible ? (
           <div className="header-user-dropdown" ref={dropdownRef}>

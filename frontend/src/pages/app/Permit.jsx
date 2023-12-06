@@ -1,30 +1,35 @@
+import { useSelector } from "react-redux";
 import testPhoto from "../../assets/permit-test-photo.png";
+import { useEffect } from "react";
 
 const Permit = () => {
-    return (
+   const resident = useSelector((state) => state.auth.value.user_resident);
+    useEffect(()=> {console.log(resident)}, [resident])
+   
+   return (
       <div className="permit">
         <h3>Електронна перепустка</h3>
         <div className="card">
           <div className="card-number">
             <h5>Перепустка</h5>
-            <span>№ 378425</span>
+            <span>№ {resident.passNumber}</span>
           </div>
           <div className="card-info">
           <div className="card-photo">
             <img src={testPhoto} alt="photo" />
           </div>
           <div className="card-main">
-            <h4 className="card-holder-name">Коваль Сергій Іванович</h4>
+            <h4 className="card-holder-name">{resident.fullName}</h4>
             <div className="card-holder-info">
-                <span>Гуртожиток: № 10</span>
-                <span>Кімната: №100</span>
+                <span>Гуртожиток: № {resident.dormNumber}</span>
+                <span>Кімната: №{resident.room}</span>
             </div>
             <div className="card-expiration-date">
                 <span>
-                  Дійсний з <strong>01.09.2023</strong>
+                  Дійсний з <strong>{new Date(resident.issued).toLocaleDateString('en-GB')}</strong>
                 </span>
                 <span>
-                  До <strong>30.06.2023</strong>
+                  До <strong>{new Date(resident.expires).toLocaleDateString('en-GB')}</strong>
                 </span>
             </div>
           </div>

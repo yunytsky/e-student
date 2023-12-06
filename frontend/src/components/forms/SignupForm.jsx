@@ -1,23 +1,39 @@
 import { useFormik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import axios from "axios";
 import { signupSchema } from "../../schemas";
 import {useDispatch} from "react-redux";
+import { signUp } from "../../api";
 
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
-import { signUp } from "../../features/auth";
+import { doSignIn } from "../../features/auth";
 
 const SignupForm = () => {  
     const [submitError, setSubmitError] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const onSubmit = async (values,actions) => {
-        const data = {studentNumber: values.studentCard, password: values.password}
-        dispatch(signUp(data));
+    const onSubmit = async (values, actions) => {
+      const data = {studentNumber: values.studentCard, password: values.password};
+      
+      try{
+        const token = await signUp(data);
+        dispatch(doSignIn(token));
+        localStorage.setItem("token", token);
+        navigate("/app/student/cabinet");
         actions.resetForm();
+      }catch(err){
+        console.log("ERROR", err)
+        if(err.response && err.response.status !== 500){
+          setSubmitError({error: true, message: err.response.data});
+        }else{
+          setSubmitError({error: true, message: "Помилка при відправці форми"});
+        }
+      }
+  
     };
+  
 
     //Password toggler
     const passwordRef = useRef(null);
@@ -35,7 +51,6 @@ const SignupForm = () => {
     const formik = useFormik({
         initialValues: {
             studentCard: "",
-            unit: "",
             password: "",
             confirmPassword: "",
             acceptTos: false
@@ -67,35 +82,6 @@ const SignupForm = () => {
           <span className="form-error-message">
             {formik.errors.studentCard}
           </span>
-        )}
-
-        {/* Unit */}
-        <label htmlFor="unit">
-          <h6>
-            Структурний підрозділ <span>*</span>
-          </h6>
-        </label>
-
-        <select
-          className="form-input"
-          name="unit"
-          id="unit"
-          value={formik.values.unit}
-          onChange={formik.handleChange}
-        >
-          <option label=" "></option>
-          <option value="Факультет комп'ютерних наук та кібернетики">
-            Факультет комп'ютерних наук і технологій
-          </option>
-          <option value="Філософський факультет">Філософський Факультет</option>
-          <option value="Інститут журналістики">Інститут журналістики</option>
-          <option value="Факультет інформаційних технологій">
-            Факультет інформаційних технологій
-          </option>
-        </select>
-
-        {formik.errors.unit && formik.touched.unit && (
-          <span className="form-error-message">{formik.errors.unit}</span>
         )}
 
         {/* Password */}
@@ -198,8 +184,8 @@ const SignupForm = () => {
           Уже є акаунт? <Link to="/login">Увійти</Link>
         </span>
 
-        {submitError && (
-          <h6 className="form-submit-error">Error submitting the form</h6>
+        {submitError.error && (
+          <h6 className="form-submit-error">{submitError.message}</h6>
         )}
       </form>
     );  

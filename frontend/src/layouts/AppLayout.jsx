@@ -2,21 +2,22 @@ import Sidebar from "../components/app/Sidebar";
 import Header from "../components/app/Header";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import {useGetUserInfoQuery} from "../services/authService";
+import { useDispatch, useSelector } from "react-redux";
 
 import cabinetIcon from "../assets/person.svg";
 import scheduleIcon from "../assets/clock.svg";
-import newsIcon from "../assets/paper.svg";
+import phoneIcon from "../assets/phone.svg";
 import chatIcon from "../assets/chat.svg";
 import permitIcon from "../assets/paper.svg";
 import documentsIcon from "../assets/paper-clip.svg";
-import { useSelector } from "react-redux";
 
 const AppLayout = (props) => {
   const [pages, setPages] = useState([]);
-  const user = useSelector(state => state.auth.value.user);
   const navigate = useNavigate();
   const location = useLocation();
+  const [sidebarVisible, setSidebarVisible] = useState(true);
+  const auth = useSelector(state => state.auth.value);
+  const dispatch = useDispatch();
 
   //Define which pages to load
   useEffect(() => {
@@ -24,23 +25,24 @@ const AppLayout = (props) => {
       ? setPages([
           { name: "Кабінет", icon: cabinetIcon, url: "/app/student/cabinet" },
           { name: "Розклад", icon: scheduleIcon, url: "/app/student/schedule" },
-          { name: "Новини", icon: newsIcon, url: "/app/student/news" },
+          { name: "Контакти", icon: phoneIcon, url: "/app/student/contacts" },
           { name: "Техпідтримка", icon: chatIcon, url: "/app/student/support" },
         ])
       : setPages([
-          { name: "Кабінет", icon: cabinetIcon, url: "/app/dweller/cabinet" },
-          { name: "Е-Перепустка", icon: permitIcon, url: "/app/dweller/permit"},
-          { name: "Розклад", icon: scheduleIcon, url: "/app/dweller/schedule" },
-          { name: "Новини", icon: newsIcon, url: "/app/dweller/news" },
-          { name: "Документи", icon: documentsIcon, url: "/app/dweller/documents" },
-          { name: "Техпідтримка", icon: chatIcon, url: "/app/dweller/support" },
+          { name: "Кабінет", icon: cabinetIcon, url: "/app/resident/cabinet" },
+          { name: "Е-Перепустка", icon: permitIcon, url: "/app/resident/permit"},
+          { name: "Розклад", icon: scheduleIcon, url: "/app/resident/schedule" },
+          { name: "Контакти", icon: phoneIcon, url: "/app/resident/contacts" },
+          { name: "Документи", icon: documentsIcon, url: "/app/resident/documents" },
+          { name: "Техпідтримка", icon: chatIcon, url: "/app/resident/support" },
         ]);
-  }, []);
+  }, [props.type]);
+
 
   //Redirect to the main page
   useEffect(() => {
-    if(location.pathname === "/app/dweller"){
-      navigate("/app/dweller/cabinet");
+    if(location.pathname === "/app/resident"){
+      navigate("/app/resident/cabinet");
     }else if( location.pathname === "/app/student"){
       navigate("/app/student/cabinet");
     }
@@ -48,9 +50,9 @@ const AppLayout = (props) => {
 
   return (
     <div className="app-container">
-      <Header type={props.type}/>
+      <Header type={props.type} setSidebarVisible={setSidebarVisible} />
       <div className="main">
-        <Sidebar pages={pages} />
+        {sidebarVisible && <Sidebar pages={pages} />}
         <div className="content">
           <Outlet />
         </div>

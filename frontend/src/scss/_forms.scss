@@ -137,6 +137,12 @@ input::placeholder{
 .form-error-message.tos{
     text-align: center;
     margin: -48px 0 48px 0;
+}
+
+.form-submit-error{
+    color: $error;
+    text-align: center;
+    margin-bottom: 8px;
 
 }
 

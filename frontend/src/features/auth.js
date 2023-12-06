@@ -4,97 +4,40 @@ import axios from "axios";
 //To come back later
 const API_BASE_URL = "http://localhost:7150";
 
-export const signUp = createAsyncThunk(
-    "auth/sign-up",
-    async({studentNumber, password}, {rejectWithValue}) => {
-        try {
-          const config = {
-            headers: {
-              "Content-type": "application/json",
-            },
-          };
-
-          const res = await axios.post(
-            `${API_BASE_URL}/sign-up`,
-            { studentNumber: studentNumber, password: password },
-            config
-          );
-
-        } catch (err) {
-            if(err.response && err.response.data.message){
-                return rejectWithValue(err.response.data.message)
-            }else{
-                return rejectWithValue(err.message)
-            }
-        }
-    }
-)
-
-export const signIn = createAsyncThunk(
-  "auth/sign-in",
-  async({studentNumber, password}, {rejectWithValue}) => {
-      try {
-        const config = {
-          headers: {
-            "Content-type": "application/json",
-          },
-        };
-
-        const res = await axios.post(
-          `${API_BASE_URL}/sign-in`,
-          { studentNumber: studentNumber, password: password },
-          config
-        );
-
-        const token = res.data;
-         localStorage.setItem("token", token);
-         return token;
-
-      } catch (err) {
-          if(err.response && err.response.data.message){
-              return rejectWithValue(err.response.data.message)
-          }else{
-              return rejectWithValue(err.message)
-          }
-      }
-  }
-)
-
 const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+const user = localStorage.getItem("user") ? localStorage.getItem(localStorage.getItem("user")) : null;
+const user_resident = localStorage.getItem("user_resident") ?  JSON.parse(localStorage.getItem("user_resident") ): null;
 
 const initialStateValue = {
-    user: null,
+    user: user,
     token: token,
-    error: null,
-    pending: false,
-    fulfilled: false
+    user_resident: user_resident
+  
 }
 
 const authSlice = createSlice({
     name: "auth",
     initialState: {value: initialStateValue},
     reducers: {
-      logout: (state) => {
-        localStorage.removeItem("token");
-        state.user = null;
-        state.token = null;
+      doLogout: (state) => {
+        state.value.user = null;
+        state.value.token = null;
+        state.value.user_resident = null;
+
+      },
+      doSignIn: (state, {payload}) => {
+        state.value.token = payload;
       },
       setUser: (state, {payload}) => {
         state.value.user = payload;
       },
+      setUserResident: (state, {payload}) => {
+        state.value.user_resident = payload;
+      }
     },
     extraReducers: {
-      [signIn.pending]: (state) => {
-      },
-      [signIn.fulfilled] : (state, {payload}) => {
-        state.value.token = payload;
-        //state.value.user = ... 
-      },
-      [signIn.rejected] : (state, {payload}) => {
-
-      }
     }
 })
 
-export const {setUser, logout} = authSlice.actions;
+export const {setUser, doLogout, doSignIn, setUserResident} = authSlice.actions;
 export default authSlice.reducer;

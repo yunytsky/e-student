@@ -6,23 +6,31 @@ import { signinSchema } from "../../schemas";
 import eyeOpenedIcon from "../../assets/eye-opened.svg";
 import eyeClosedIcon from "../../assets/eye-closed.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../../features/auth";
+import { signIn } from "../../api";
+import { doSignIn } from "../../features/auth";
 
 const LoginForm = () => {
-  const [submitError, setSubmitError] = useState(false);
+  const [submitError, setSubmitError] = useState({error: false, message: ""});
   const auth = useSelector(state => state.auth.value)
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onSubmit = async (values, actions) => {
     const data = {studentNumber: values.studentCard, password: values.password};
-    dispatch(signIn(data)).then((data) => {
-      console.log(data)
-      actions.resetForm();
+    
+    try{
+      const token = await signIn(data);
+      dispatch(doSignIn(token));
+      localStorage.setItem("token", token);
       navigate("/app/student/cabinet");
-    }).catch((err) => {
-      console.log("ERR CATCHED", err)
-    })
+      actions.resetForm();
+    }catch(err){
+      if(err.response){
+        setSubmitError({error: true, message: err.response.data});
+      }else{
+        setSubmitError({error: true, message: "Помилка при відправці форми"});
+      }
+    }
 
   };
 
@@ -102,13 +110,15 @@ const LoginForm = () => {
         Увійти
       </button>
 
+
+      {submitError.error && (
+        <h6 className="form-submit-error">{submitError.message}</h6>
+      )}
+
       <span className="form-auxiliary-link">
         Немає акаунту? <Link to="/signup">Зареєструватись</Link>
       </span>
 
-      {submitError && (
-        <h6 className="form-submit-error">Error submitting the form</h6>
-      )}
     </form>
   );
 };

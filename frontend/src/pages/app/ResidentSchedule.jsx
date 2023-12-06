@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import Calendar from "react-calendar";
-// import 'react-calendar/dist/Calendar.css';
 
-const DwellerSchedule = () => {
+const ResidentSchedule = () => {
 // List of dates
   const controlDates = [
     new Date(2023, 3, 10), // 10.04.2023
@@ -14,6 +14,10 @@ const DwellerSchedule = () => {
     new Date(2023, 10, 10),// 10.11.2023
     new Date(2023, 11, 11),// 11.12.2023
   ];
+
+  useEffect(()=> {
+    
+  }, [])
 
   const tileClassName = ({ date, view }) => {
     // Check if the date is in the list of highlighted dates
@@ -31,4 +35,4 @@ const DwellerSchedule = () => {
   );
 };
 
-export default DwellerSchedule;
+export default ResidentSchedule;

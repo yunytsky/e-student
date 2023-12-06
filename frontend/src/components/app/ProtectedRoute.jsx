@@ -1,34 +1,58 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
-import { setUser } from "../../features/auth";
-import { useGetUserInfoQuery } from "../../services/authService";
+import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { doLogout, setUser, setUserResident } from "../../features/auth";
+import { getStudentInfo, getResidentInfo } from "../../api";
 
 const ProtectedRoute = () => {
-    const user = useSelector(state => state.auth.value.user);
+    const auth = useSelector(state => state.auth.value);
     const [isLoading, setIsLoading] = useState(true);
+    const location = useLocation();
     const dispatch = useDispatch();
-
-    //Authenticate user
-    const data = useGetUserInfoQuery("userInfo", {
-        pollingInterval: 600000
-    })
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (data.data) {
-            dispatch(setUser(data.data));
-            setIsLoading(false)
-        }else if(data.status === "rejected"){
-            //dispatch logout? 
+        const fetchStudent = async () => {
+            try{
+                const user = await getStudentInfo(auth.token);
+                dispatch(setUser(user));
+                localStorage.setItem("user", JSON.stringify(user))
+                setIsLoading(false)
+
+
+
+            }catch(err){
+                setIsLoading(false);
+                localStorage.clear();
+                dispatch(doLogout());
+            }
         }
-    }, [data]);
+
+        const fetchResident = async () => {
+            try{
+                const resident = await getResidentInfo(auth.token);
+                dispatch(setUserResident(resident));
+                localStorage.setItem("user_resident", JSON.stringify(resident))
+                console.log("Resident", resident)
+            }catch(err){
+                navigate("/app/not-allowed");
+            }
+        }
+
+        if(location.pathname.includes("resident")){
+            fetchResident();
+        }
+
+        fetchStudent();
+
+    }, [location.pathname]);
 
     
     if(isLoading){
         return <div>Loading</div>
     }
 
-    return user ? <Outlet/> : <Navigate to="/login"/>
+    return auth.user ? <Outlet/> : <Navigate to="/login"/>
 }
 
 export default ProtectedRoute;

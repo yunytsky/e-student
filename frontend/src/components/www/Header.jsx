@@ -3,14 +3,15 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Header = (props) => {
-    const user = useSelector(state => state.auth.value.user);
+    const auth = useSelector(state => state.auth.value);
     const navigate = useNavigate();
 
-    useEffect(() => {
-      if(user){
-        // navigate("/app/student/cabinet");
-      }
-    }, [user])
+  //Protec for authorized users
+  useEffect(() => {
+    if(auth.user){
+      navigate("/app/student/cabinet");
+    }
+  }, [auth])
 
     return (
       <header className="header www">

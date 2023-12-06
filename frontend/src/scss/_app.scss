@@ -128,7 +128,7 @@
 .sidebar {
     height: 100%;
     padding: .5em 0;
-    flex: 0 1 15em;
+    flex: 0 1 18em;
     background-color: #fff;
     border-right: 1px solid $black-10;
 }
@@ -139,7 +139,6 @@
     display: flex;
     align-items: center;
     color: $black-75;
-
     img {
         width: 16px;
         height: 16px;
@@ -188,7 +187,8 @@
 .news,
 .schedule,
 .documents,
-.permit {
+.permit,
+.contacts {
     h3:first-child {
         margin-bottom: 16px;
     }
@@ -210,11 +210,11 @@
     margin-bottom: 1em;
 }
 
-.cabinet-dweller-info {
+.cabinet-resident-info {
     margin-bottom: 2em;
 }
 
-.cabinet-dweller-balance-left {
+.cabinet-resident-balance-left {
     display: flex;
     align-items: center;
 
@@ -304,14 +304,7 @@
     color: $black-75;
 }
 
-.news-information {
-    h5 {
-        margin-bottom: 32px;
-    }
-    flex: 0 0 20%;
-}
-
-.news-information-items {
+.contacts {
     li {
         @include body-2;
         color: $black-75;
@@ -345,7 +338,7 @@
                 content: url("./assets/telegram.svg");
                 position: absolute;
                 left: 0;
-                top: 0;
+                top: 3px;
                 width: 16px;
                 height: 16px;
             }
@@ -482,7 +475,7 @@
     margin-right: 1.5em;
 }
 
-//Dweller schedule
+//resident schedule
 .react-calendar {
     width: 100%;
 

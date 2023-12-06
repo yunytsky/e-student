@@ -8,9 +8,13 @@ const Support = () => {
           Якщо у вас виникли проблеми чи потрібна допомога, зверніться до служби
           технічної підтримки.
         </p>
-        <Link className="support-cta button-filled">
-            Зв'язатися
-        </Link>
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSdLiDcVpfNFideP_AamMSymFLfyGEqvZEVyskjHMHNIKt_Utw/viewform?usp=sf_link"
+          target="_blank"
+          className="support-cta button-filled"
+        >
+          Зв'язатися
+        </a>
       </div>
     );
 };
