@@ -19,9 +19,22 @@ namespace E_Student.Controllers
             var allDormInspections = await _dormInspections.GetAll();
             foreach (var dormInspection in allDormInspections)
             {
-                if(!InspectionConstants.DormInspections.Contains(dormInspection))
+                if(!InspectionConstants.DormInspections.Contains(dormInspection) && !ContainsDate(dormInspection))
                     InspectionConstants.DormInspections.Add(dormInspection);
             }
+        }
+
+        private bool ContainsDate(DormInspectionsModel dormInspection)
+        {
+            bool contains = false;
+            
+            foreach (var localInspection in InspectionConstants.DormInspections)
+            {
+                if (localInspection.date == dormInspection.date)
+                    contains = true;
+            }
+
+            return contains;
         }
     }
 }
