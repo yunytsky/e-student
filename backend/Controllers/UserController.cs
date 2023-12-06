@@ -59,9 +59,11 @@ namespace E_Student.Controllers
             {
                 if (controller.GetUser(userSignUp.StudentNumber) != null)
                     return BadRequest("Користувач з цим номером студентського квитка вже існує.");
-                
-                var token = GenerateToken(CreateUser(userSignUp));
-                return Ok(token);
+                else
+                {
+                    var token = GenerateToken(CreateUser(userSignUp));
+                    return Ok(token);
+                }
             }
             catch (Exception e)
             {
@@ -130,6 +132,13 @@ namespace E_Student.Controllers
         public IActionResult DormInspectionSchedule()
         {
             return Ok(JsonSerializer.Serialize(controller.GetAllInspections()));
+        }
+        
+        [HttpGet("user/exams-schedule")]
+        [Authorize]
+        public IActionResult DormExamsSchedule()
+        {
+            return Ok(JsonSerializer.Serialize(controller.GetAllExams()));
         }
 
         private UserModel CreateUser(UserSignUp userSignUp)

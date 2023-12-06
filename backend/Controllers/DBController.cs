@@ -11,10 +11,11 @@ public class DBController : Controller
 {
     private DBController() { }
 
-    private static StudentDatabaseController _studentService;
-    private static UserDatabaseController _userService;
+    private static StudentDatabaseController _studentController;
+    private static UserDatabaseController _userController;
     private static DormResidentController _dormResidentController;
     private static DormInspectionsController _dormInspectionsController;
+    private static ExamsScheduleController _examsController;
 
     private static DBController _instance;
     
@@ -48,15 +49,22 @@ public class DBController : Controller
             DatabaseName = "DormInspections",
             CollectionName = "DormInspections"
         });
+        var ExamsDatabaseSettings = Options.Create(new ExamsScheduleSettings()
+        {
+            ConnectionString = connectionString,
+            DatabaseName = "Exams",
+            CollectionName = "Exams"
+        });
         if (_instance == null)
             lock (_lock)
                 if (_instance == null)
                 {
                     _instance = new DBController();
-                    _studentService = new StudentDatabaseController(new StudentService(studentsDatabaseSettings));    
-                    _userService = new UserDatabaseController(new UserService(usersDatabaseSettings));
+                    _studentController = new StudentDatabaseController(new StudentService(studentsDatabaseSettings));    
+                    _userController = new UserDatabaseController(new UserService(usersDatabaseSettings));
                     _dormResidentController = new DormResidentController(new DormResidentService(DormResidentDatabaseSettings));
                     _dormInspectionsController = new DormInspectionsController(new DormInspectionsService(DormInspectionsDatabaseSettings));
+                    _examsController = new ExamsScheduleController(new ExamsScheduleService(ExamsDatabaseSettings));
                 }
 
         return _instance;
@@ -65,7 +73,7 @@ public class DBController : Controller
     public void AddNewUser(UserModel newUser)
     {
         UserConstants.Users.Add(newUser);
-        _userService.Add(newUser);
+        _userController.Add(newUser);
     }
     public void UpdateUserPassword(string number, string newPassword)
     {
@@ -80,10 +88,11 @@ public class DBController : Controller
 
         UserConstants.Users.Remove(currentUser);
         UserConstants.Users.Add(newUser);
-        _userService.Update(currentUser.StudentNumber, newUser);
+        _userController.Update(currentUser.StudentNumber, newUser);
     }
     public UserModel GetUser(string number)
     {
+        //_userController.RenewLocalDatabase().GetAwaiter().GetResult();
         var currentUser = UserConstants.Users.FirstOrDefault(o => o.StudentNumber == number);
         
         if (currentUser != null)
@@ -95,6 +104,7 @@ public class DBController : Controller
     }
     public StudentModel GetStudent(string number)
     {
+        //_studentController.RenewLocalDatabase().GetAwaiter().GetResult();
        var currentStudent = StudentConstants.Students.FirstOrDefault(o => o.Number == number);
 
         if (currentStudent != null)
@@ -106,6 +116,7 @@ public class DBController : Controller
     }
     public DormResidentModel GetDormResident(string name)
     {
+        //_dormResidentController.RenewLocalDatabase().GetAwaiter().GetResult();
         var currentDormResident = DormResidentConstants.DormResidents.FirstOrDefault(o => o.FullName == name);
         
         if (currentDormResident != null)
@@ -118,6 +129,13 @@ public class DBController : Controller
 
     public List<DormInspectionsModel> GetAllInspections()
     {
+        _dormInspectionsController.RenewLocalDatabase().GetAwaiter().GetResult();
         return InspectionConstants.DormInspections;
+    }
+    
+    public List<ExamsScheduleModel> GetAllExams()
+    {
+        _dormInspectionsController.RenewLocalDatabase().GetAwaiter().GetResult();
+        return ExamsScheduleConstants.Exams;
     }
 }

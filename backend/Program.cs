@@ -19,6 +19,9 @@ builder.Services.AddSingleton<DormResidentService>();
 builder.Services.Configure<DormInspectionsSettings>(builder.Configuration.GetSection("DormInspectionsDataBase"));
 builder.Services.AddSingleton<DormInspectionsService>();
 
+builder.Services.Configure<ExamsScheduleSettings>(builder.Configuration.GetSection("ExamsDataBase"));
+builder.Services.AddSingleton<ExamsScheduleService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,
