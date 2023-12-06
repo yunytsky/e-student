@@ -33,4 +33,6 @@ public class DormResidentModel
     public DateTime DormPassIssued { get; set; }
     [BsonElement("dormPassExpires")]
     public DateTime DormPassExpires { get; set; }
+    [BsonElement("dormNumber")]
+    public string DormNumber { get; set; }
 }
