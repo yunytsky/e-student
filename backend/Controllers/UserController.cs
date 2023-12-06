@@ -136,9 +136,16 @@ namespace E_Student.Controllers
         
         [HttpGet("user/exams-schedule")]
         [Authorize]
-        public IActionResult DormExamsSchedule()
+        public IActionResult ExamsSchedule()
         {
             return Ok(JsonSerializer.Serialize(controller.GetAllExams()));
+        }
+        
+        [HttpGet("user/lessons-schedule")]
+        [Authorize]
+        public IActionResult LessonsSchedule()
+        {
+            return Ok(JsonSerializer.Serialize(controller.GetAllLessons()));
         }
 
         private UserModel CreateUser(UserSignUp userSignUp)

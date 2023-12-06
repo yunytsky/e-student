@@ -16,6 +16,7 @@ public class DBController : Controller
     private static DormResidentController _dormResidentController;
     private static DormInspectionsController _dormInspectionsController;
     private static ExamsScheduleController _examsController;
+    private static ScheduleController _scheduleController;
 
     private static DBController _instance;
     
@@ -55,6 +56,12 @@ public class DBController : Controller
             DatabaseName = "Exams",
             CollectionName = "Exams"
         });
+        var ScheduleDatabaseSettings = Options.Create(new ScheduleSettings()
+        {
+            ConnectionString = connectionString,
+            DatabaseName = "Schedule",
+            CollectionName = "Schedule"
+        });
         if (_instance == null)
             lock (_lock)
                 if (_instance == null)
@@ -65,6 +72,7 @@ public class DBController : Controller
                     _dormResidentController = new DormResidentController(new DormResidentService(DormResidentDatabaseSettings));
                     _dormInspectionsController = new DormInspectionsController(new DormInspectionsService(DormInspectionsDatabaseSettings));
                     _examsController = new ExamsScheduleController(new ExamsScheduleService(ExamsDatabaseSettings));
+                    _scheduleController = new ScheduleController(new ScheduleService(ScheduleDatabaseSettings));
                 }
 
         return _instance;
@@ -135,7 +143,13 @@ public class DBController : Controller
     
     public List<ExamsScheduleModel> GetAllExams()
     {
-        _dormInspectionsController.RenewLocalDatabase().GetAwaiter().GetResult();
+        _examsController.RenewLocalDatabase().GetAwaiter().GetResult();
         return ExamsScheduleConstants.Exams;
+    }
+    
+    public List<ScheduleModel> GetAllLessons()
+    {
+        _scheduleController.RenewLocalDatabase().GetAwaiter().GetResult();
+        return ScheduleConstants.Schedules;
     }
 }
