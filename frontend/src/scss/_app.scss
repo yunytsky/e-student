@@ -411,6 +411,22 @@
     border-bottom: 3px solid $primary-blue;
 }
 
+.schedule-list{
+    li{
+        border-bottom: 1px solid $black-10;
+        padding: .75em;
+        &:hover{
+            background-color: rgba($color: $black-5, $alpha: 0.4);
+        }
+    }
+    h6{
+        display: inline;
+        color: $primary-blue;
+
+    }
+}
+
+
 //Documents
 .document {
     span {
@@ -481,6 +497,9 @@
 
 .card-photo {
     margin-right: 1.5em;
+    img{
+        max-width: 136px;
+    }
 }
 
 //resident schedule

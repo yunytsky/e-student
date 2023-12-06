@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import testPhoto from "../../assets/permit-test-photo.png";
 import { useEffect } from "react";
 
 const Permit = () => {
    const resident = useSelector((state) => state.auth.value.user_resident);
+   
    
    return (
       <div className="permit">
@@ -15,7 +15,7 @@ const Permit = () => {
           </div>
           <div className="card-info">
           <div className="card-photo">
-            <img src={testPhoto} alt="photo" />
+            <img src={"http://localhost:7150/" + resident.passNumber + ".png" }alt="photo" />
           </div>
           <div className="card-main">
             <h4 className="card-holder-name">{resident.fullName}</h4>

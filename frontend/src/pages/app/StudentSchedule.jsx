@@ -81,44 +81,7 @@ const StudentSchedule = () => {
             : ""}
         </h3>
 
-        <div className="schedule-inputs">
-          <select
-            className="schedule-select"
-            name="group"
-            id="group"
-            value={group}
-            onChange={(e) => {
-              setGroup(e.target.value);
-            }}
-          >
-            <option value="" disabled hidden className="#option-zero">Оберіть групу</option>
-            <option value="K24">К24</option>
-            <option value="K25">К25</option>
-            <option value="K26">К26</option>
-          </select>
-
-          {/* Render select subject on teachers information page */}
-          {tab === "teachers-info" ? (
-            <>
-              <select
-                className="schedule-select"
-                name="subject"
-                id="subject"
-                value={subject}
-                onChange={(e) => {
-                  setSubject(e.target.value);
-                }}
-              >
-                <option value="" id="option-zero">Оберіть предмет</option>
-                <option value="ООП">ООП</option>
-                <option value="Теорія ймовірностей">Теорія ймовірностей</option>
-                <option value="Англійська мова">Англійська мова</option>
-              </select>
-            </>
-          ) : null}
-
-
-        </div>
+      
 
         <div className="schedule-tabs">
           <button

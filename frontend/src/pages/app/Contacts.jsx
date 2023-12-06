@@ -1,11 +1,3 @@
-import { Link } from "react-router-dom";
-
-import arrowIcon from "../../assets/arrow-right.svg";
-import tempImage from "../../assets/temp.jpg";
-import tempImage2 from "../../assets/temp2.png";
-import tempImage3 from "../../assets/temp3.jfif";
-import tempImage4 from "../../assets/temp4.jpg";
-
 const Contacts = (props) => {
     return (
       <div className="contacts">

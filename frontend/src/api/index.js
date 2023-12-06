@@ -69,5 +69,33 @@ export const getExamsSchedule = async (token) => {
   return res.data;
 }
 
+export const getLessonsSchedule = async (token) => {
+  const res = await axios.get(
+      `${API_BASE_URL}/user/lessons-schedule`,
+      {headers: {"Authorization": `Bearer ${token}`}}
+   );
+
+  return res.data;
+}
+
+export const changePassword = async (token) => {
+
+   const config = {
+    headers: {
+      "Content-type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
+  };
+  const res = await axios.post(
+    `${API_BASE_URL}/user/change-password`,
+    data,
+    config
+  );
+
+return res.data;
+  return res.data;
+}
+
+
 
 

@@ -27,3 +27,19 @@ export const signinSchema = yup.object().shape({
     .string()
     .required("Обов'язкове поле")
 });
+
+export const changePasswordSchema = yup.object().shape({
+  oldPassword: yup
+  .string()
+  .required("Обов'язкове поле"),
+  confirmOldPassword: yup
+    .string()
+    .oneOf([yup.ref("oldPassword"), null], "Паролі не співпадають")
+    .required("Обов'язкове поле"),
+  newPassword: yup
+  .string()
+  .min(6, "Пароль має містити принаймні 6 символів")
+  .matches(/[a-z]/, "Пароль має містити принаймні одну маленьку літеру")
+  .matches(/\d/, "Пароль має містити принаймні одну цифру")
+  .required("Обов'язкове поле"),
+});

@@ -68,7 +68,9 @@ const Table = (props) => {
 
     return (
       <ThemeProvider theme={getMuiTheme}>
+      <div className="table-wrapper">
         <MUIDataTable data={props.data} columns={props.columns} options={options} />
+      </div>
       </ThemeProvider>
     );
 };

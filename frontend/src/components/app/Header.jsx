@@ -83,7 +83,7 @@ const Header = (props) => {
           <div className="header-user-dropdown" ref={dropdownRef}>
             <button onClick={handleLogout} className="header-user-dropdown-option">
               <img src={logoutIcon} alt="option-icon" />
-              <span>Log out</span>
+              <span>Вийти</span>
             </button>
           </div>
         ) : null}

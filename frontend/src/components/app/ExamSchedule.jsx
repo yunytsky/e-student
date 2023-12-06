@@ -24,20 +24,12 @@ const ExamSchedule = () => {
     },
   ];
 
-  // const data = [
-  //   ['Дискретна математика', 'Залік', '10/12/2023', "09:30", 206],
-  //   ['Додаткові розділи C++', 'Залік', '12/12/2023', "08:30", 204],
-  //   ["Об'єктно орієнтоване програмування", 'Екзамен', '14/12/2023', "09:30", 106],
-  //   ['Англійська мова', 'Залік', '15/12/2023', "09:30", 206],
-  //   ['Теорія ймовірностей', 'Екзамен', '18/12/2023', "10:30", 208],
-  // ];
   const [data, setData] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const scheduleList = await getExamsSchedule(auth.token);
         const exams = [];
-        console.log(scheduleList)
         scheduleList.forEach((scheduleItem) => {
           if (scheduleItem.group === auth.user.group) {
             scheduleItem.exams.forEach((exam) => {
