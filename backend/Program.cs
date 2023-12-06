@@ -16,6 +16,9 @@ builder.Services.AddSingleton<UserService>();
 builder.Services.Configure<DormResidentSettings>(builder.Configuration.GetSection("DormResidentDataBase"));
 builder.Services.AddSingleton<DormResidentService>();
 
+builder.Services.Configure<DormInspectionsSettings>(builder.Configuration.GetSection("DormInspectionsDataBase"));
+builder.Services.AddSingleton<DormInspectionsService>();
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: MyAllowSpecificOrigins,

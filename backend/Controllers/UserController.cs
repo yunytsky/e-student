@@ -124,6 +124,13 @@ namespace E_Student.Controllers
 
             return NotFound("Такого студента не існує.");
         }
+        
+        [HttpGet("user/dorm-inspections-schedule")]
+        [Authorize(Roles = "Dorm resident")]
+        public IActionResult DormInspectionSchedule()
+        {
+            return Ok(JsonSerializer.Serialize(controller.GetAllInspections()));
+        }
 
         private UserModel CreateUser(UserSignUp userSignUp)
         {

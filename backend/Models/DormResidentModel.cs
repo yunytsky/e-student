@@ -7,7 +7,7 @@ public class DormResidentModel
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public string ID { get; set; }
+    public string Id { get; set; }
 
     [BsonElement("fullName")]
     public string FullName { get; set; }
