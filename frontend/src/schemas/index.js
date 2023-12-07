@@ -3,7 +3,7 @@ import * as yup from "yup";
 export const signupSchema = yup.object().shape({
   studentCard: yup
     .string()
-    .matches(/^[A-Z]{2}\s\d{8}$/, "Неправильний формат")
+    .matches(/^[A-Z]{2}\s\d{8}$/, "Введіть у форматі 'NN 00000000'")
     .required("Обов'язкове поле"),
   password: yup
     .string()

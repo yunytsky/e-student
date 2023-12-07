@@ -102,9 +102,9 @@ const LoginForm = () => {
         </span>
       )}
 
-      <Link className="forgot-password-link" to="#">
+      {/* <Link className="forgot-password-link" to="#">
         Забули пароль?
-      </Link>
+      </Link> */}
 
       <button type="submit" className="form-submit-button button-filled" disabled={formik.isSubmitting}>
         Увійти
